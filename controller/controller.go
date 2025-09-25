@@ -54,8 +54,8 @@ func Contact(w http.ResponseWriter, r *http.Request) {
 
 func Jeu(w http.ResponseWriter, r *http.Request) {
 	data := map[string]string{
-		"Title":   "Puissance 4",
+		"Title":   "Entrée des joueurs",
 		"Message": "Envoie-nous un message 📩",
 	}
-	renderTemplate(w, "contact.html", data)
+	renderTemplate(w, "jeu.html", data)
 }
