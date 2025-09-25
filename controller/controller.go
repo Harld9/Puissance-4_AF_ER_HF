@@ -52,6 +52,4 @@ func Contact(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "contact.html", data)
 }
 
-func Jeu(w http.ResponseWriter, r *http.Request )
-
-	data := map[]
+func Jeu
