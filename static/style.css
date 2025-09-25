@@ -1,7 +1,12 @@
-p{
-    height: 200px;
+h1{
     display: flex;
- align-items: center;
- justify-content : center;
-
+    align-items: center;
+    justify-content : center;
 }
+
+p{
+    display: flex;
+    align-items: center;
+    justify-content : center;
+}
+

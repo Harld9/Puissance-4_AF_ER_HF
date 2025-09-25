@@ -52,7 +52,7 @@ func Contact(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "contact.html", data)
 }
 
-
+/*
 func IsWin(){
 	zqz
 	compteur := 0
@@ -75,7 +75,7 @@ func IsWin(){
 		}
 		//Check en haut
 		for i := 0; i < 4; i++ {
-    		if pion at x y+i == 1 { 
+    		if pion at x y+i == 1 {
     			compteur++
     		} else {
    	    	break
@@ -83,7 +83,7 @@ func IsWin(){
 		}
 		//Check en bas
 		for i := 0; i < 4; i++ {
- 		   if pion at x y-i == 1 { 
+ 		   if pion at x y-i == 1 {
   		    	compteur++
 		    } else {
 	        break
@@ -91,7 +91,7 @@ func IsWin(){
 		}
     	//check en diagonalesupérieur droite
 		for i := 0; i < 4; i++ {
-		    if pion at x+i y+i == 1 { 
+		    if pion at x+i y+i == 1 {
 				compteur++
 	    	} else {
 	        break
@@ -99,7 +99,7 @@ func IsWin(){
 		}
     	//check en diagonale supérieur gauche
 		for i := 0; i < 4; i++ {
-		    if pion at x-i y+i == 1 { 
+		    if pion at x-i y+i == 1 {
 	 	       compteur++
 		    } else {
 	        break
@@ -107,7 +107,7 @@ func IsWin(){
 		}
 		//check en diagonale inferieure gauche
 		for i := 0; i < 4; i++ {
-		    if pion at x-i y-i == 1 { 
+		    if pion at x-i y-i == 1 {
 		        compteur++
 		    } else {
 		    break
@@ -115,7 +115,7 @@ func IsWin(){
 		}
 		//check en diagonale inferieure droite
 		for i := 0; i < 4; i++ {
-		    if pion at x+i y-i == 1 { 
+		    if pion at x+i y-i == 1 {
 		        compteur++
 		    } else {
 		    break
@@ -125,4 +125,4 @@ func IsWin(){
 			return true
 		}
 	}
-}
+} */
