@@ -14,8 +14,8 @@ func renderTemplate(w http.ResponseWriter, filename string, data map[string]stri
 // Home gère la page d'accueil
 func Home(w http.ResponseWriter, r *http.Request) {
 	data := map[string]string{
-		"Title":   "Accueil",                      // Titre de la page
-		"Message": "Bienvenue chez Ynov du cul 🎉", // Message affiché dans le template
+		"Title":   "Accueil",               // Titre de la page
+		"Message": "Bienvenue chez Ynov 🎉", // Message affiché dans le template
 	}
 	renderTemplate(w, "index.html", data) // Affiche le template index.html avec les données
 }
