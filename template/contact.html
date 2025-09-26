@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/style.css">
     <title>{{ .Title }}</title>
 </head>
+
 <body>
-<h1>{{ .Title }}</h1>
-<p>{{ .Message }}</p>
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Message }}</p>
 
-<form method="post" action="/contact">
-    <label>Nom :</label><br>
-    <input type="text" name="name"><br><br>
-    <label>Message :</label><br>
-    <textarea name="msg"></textarea><br><br>
-    <button type="submit">Envoyer</button>
-</form>
+    <form method="post" action="/contact">
+        <label>Nom :</label><br>
+        <input type="text" name="name"><br><br>
+        <label>Message :</label><br>
+        <textarea name="msg"></textarea><br><br>
+        <button type="submit">Envoyer</button>
+    </form>
 
-<nav>
-    <a href="/">Accueil</a> |
-    <a href="/about">À propos</a> |
-    <a href="/contact">Contact</a> |
-    <a href="/jeu">Jeu</a>
-</nav>
+    <div>
+        <nav>
+            <a href="/">Accueil</a> |
+            <a href="/jeu">Jeu</a> |
+            <a href="/about">À propos</a> 
+
+        </nav>
+    </div>
 </body>
+
 </html>
-
-
-
-

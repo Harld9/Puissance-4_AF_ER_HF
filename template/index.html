@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/style.css">
     <title>{{ .Title }}</title>
 </head>
+
 <body>
-<h1>{{ .Title }}</h1>
-<p>{{ .Message }}</p>
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Message }}</p>
+    <div>
+        <nav>
+            <a href="/jeu">Jeu</a> |
+            <a href="/about">À propos</a> |
+            <a href="/contact">Contact</a> 
 
-<nav>
-    <a href="/">Accueil</a> |
-    <a href="/about">À propos</a> |
-    <a href="/contact">Contact</a> |
-    <a href="/jeu">Jeu</a>
-</nav>
+        </nav>
+    </div>
 </body>
+
 </html>
-
-
-
