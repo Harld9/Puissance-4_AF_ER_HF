@@ -9,7 +9,15 @@
 
 <body>
     <h1>{{ .Title }}</h1>
+    <p>{{ .Message }}</p>
 
+    <form method="post" action="/jeu">
+        <label>Joueur 1 :</label><br>
+        <input type="text" name="joueur1"><br><br>
+        <label>Joueur 2 :</label><br>
+        <textarea name="joueur2"></textarea><br><br>
+        <button type="submit">Envoyer</button>
+    </form>
     <div>
         <nav>
             <a href="/">Accueil</a> |

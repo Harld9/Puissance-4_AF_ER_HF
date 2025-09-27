@@ -14,8 +14,8 @@ func renderTemplate(w http.ResponseWriter, filename string, data map[string]stri
 // Home gère la page d'accueil
 func Home(w http.ResponseWriter, r *http.Request) {
 	data := map[string]string{
-		"Title":   "Accueil",               // Titre de la page
-		"Message": "Bienvenue chez Ynov 🎉", // Message affiché dans le template
+		"Title":   "Accueil",                       // Titre de la page
+		"Message": "Bienvenue chez la PUISSANCE 🎉", // Message affiché dans le template
 	}
 	renderTemplate(w, "index.html", data) // Affiche le template index.html avec les données
 }
@@ -53,9 +53,20 @@ func Contact(w http.ResponseWriter, r *http.Request) {
 }
 
 func Jeu(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost { // Si le formulaire est soumis en POST
+		// Récupération des données du formulaire
+		joueur1 := r.FormValue("joueur1") // Récupère le champ "joueur1"
+		joueur2 := r.FormValue("joueur2") // Récupère le champ "joueur2"
+		data := map[string]string{
+			"Title":   "Jeu en cours",
+			"Message": "Joueurs : " + joueur1 + " vs " + joueur2,
+		}
+		renderTemplate(w, "jeu.html", data)
+		return // On termine ici pour ne pas exécuter la partie GET
+	}
 	data := map[string]string{
 		"Title":   "Entrée des joueurs",
-		"Message": "Envoie-nous un message 📩",
+		"Message": "Saisissez les noms des Joueurs",
 	}
 	renderTemplate(w, "jeu.html", data)
 }
