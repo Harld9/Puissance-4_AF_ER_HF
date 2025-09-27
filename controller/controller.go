@@ -58,4 +58,78 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 		"Message": "Envoie-nous un message 📩",
 	}
 	renderTemplate(w, "jeu.html", data)
+
+	/*func IsWin(){
+	  	zqz
+	  	compteur := 0
+	  	for {
+	  		//Check à droite
+	  		for i := 0; i < 4; i++ {
+	  			if pion at x+i y == 1 {
+	  				compteur++
+	  			} else {
+	  			break
+	  			}
+	  		}
+	  		//Check à gauche
+	  		for i := 0; i < 4; i++ {
+	  			if pion at x-i y == 1 {
+	  				compteur++
+	  			} else {
+	  			break
+	  			}
+	  		}
+	  		//Check en haut
+	  		for i := 0; i < 4; i++ {
+	      		if pion at x y+i == 1 {
+	      			compteur++
+	      		} else {
+	     	    	break
+	      		}
+	  		}
+	  		//Check en bas
+	  		for i := 0; i < 4; i++ {
+	   		   if pion at x y-i == 1 {
+	    		    	compteur++
+	  		    } else {
+	  	        break
+	  		    }
+	  		}
+	      	//check en diagonalesupérieur droite
+	  		for i := 0; i < 4; i++ {
+	  		    if pion at x+i y+i == 1 {
+	  				compteur++
+	  	    	} else {
+	  	        break
+	  	    	}
+	  		}
+	      	//check en diagonale supérieur gauche
+	  		for i := 0; i < 4; i++ {
+	  		    if pion at x-i y+i == 1 {
+	  	 	       compteur++
+	  		    } else {
+	  	        break
+	  		    }
+	  		}
+	  		//check en diagonale inferieure gauche
+	  		for i := 0; i < 4; i++ {
+	  		    if pion at x-i y-i == 1 {
+	  		        compteur++
+	  		    } else {
+	  		    break
+	  		    }
+	  		}
+	  		//check en diagonale inferieure droite
+	  		for i := 0; i < 4; i++ {
+	  		    if pion at x+i y-i == 1 {
+	  		        compteur++
+	  		    } else {
+	  		    break
+	  		    }
+	  		}
+	  		if compteur = 4 {
+	  			return true
+	  		}
+	  	}
+	  }*/
 }
