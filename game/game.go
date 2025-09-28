@@ -9,14 +9,16 @@ func game() {
 	//  - Emrick:
 	// En gros grille[i][j] = un tableau de tableaux; i = ligne 1 et j = colonne 1
 	grille := [][]int{
-		{3, 3, 3, 3, 3, 3, 3, 3, 3}, //Ligne 1
-		{3, 0, 0, 0, 0, 0, 0, 0, 3}, //Ligne 2
-		{3, 0, 0, 0, 0, 0, 0, 0, 3}, //Ligne 3
-		{3, 0, 0, 0, 0, 0, 0, 0, 3}, //Ligne 4
-		{3, 0, 0, 0, 0, 0, 0, 0, 3}, //Ligne 5
-		{3, 0, 0, 0, 0, 0, 0, 0, 3}, //Ligne 6
-		{3, 0, 0, 0, 0, 0, 0, 0, 3}, //Ligne 7
-		{3, 3, 3, 3, 3, 3, 3, 3, 3}, //Ligne 8
+		//Lignes :
+		/* 0 */ {3, 3, 3, 3, 3, 3, 3, 3, 3},
+		/* 1 */ {3, 0, 0, 0, 0, 0, 0, 0, 3},
+		/* 2 */ {3, 0, 0, 0, 0, 0, 0, 0, 3},
+		/* 3 */ {3, 0, 0, 0, 0, 0, 0, 0, 3},
+		/* 4 */ {3, 0, 0, 0, 0, 0, 0, 0, 3},
+		/* 5 */ {3, 0, 0, 0, 0, 0, 0, 0, 3},
+		/* 6 */ {3, 0, 0, 0, 0, 0, 0, 0, 3},
+		/* 7 */ {3, 3, 3, 3, 3, 3, 3, 3, 3},
+		// col : 0  1  2  3  4  5  6  7  8
 	}
 
 	//Yo les potes j'ai fait ça pour ajouter un jeton dans la premiere ligne de la grille mais je pense ça peut s'opti avec une boucle
@@ -40,6 +42,12 @@ func game() {
 		grille[6][6] = (grille[6][1]) + 1
 	}
 	fmt.Println(grille)
+	for i := 0; i < len(grille); i++ {
+		for j := 0; j < len(grille[i]); j++ {
+			fmt.Print(grille[i][j], " ")
+		}
+		fmt.Println() // retourne à la ligne après chaque ligne de la matrice
+	}
 	//rajouter uine fonction pour savoir si la colonne est pleine
 	//et une fonction pour checker la win
 

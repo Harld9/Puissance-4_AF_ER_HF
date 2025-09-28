@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/style.css">
-    <title>Puissance 4 - {{ .Title }}</title>
+    <title>Puissance 4 - {{ .Title }}</title> <!-- Titre de la page -->
 </head>
 
 <body>
@@ -12,7 +12,7 @@
     <p>{{ .Message }}</p>
 
     <form method="post" action="/jeu">
-        <label for="joueur1">Joueur 1 :</label><br>
+        <label for="joueur1">Joueur 1 :</label><br> <!-- Le for sert à lier le label au champ de saisie avec le même id; quand on survole le label, le champ correspondant est mis en avant -->
         <input type="text" name="joueur1" id="joueur1" required><br><br>
         <label for="joueur2">Joueur 2 :</label><br>
         <input type="text" name="joueur2" id="joueur2" required><br><br>
