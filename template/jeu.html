@@ -18,50 +18,47 @@
         <input type="text" name="joueur2" id="joueur2" required><br><br>
         <button type="submit">Envoyer</button>
     </form> 
-  <body>
- 
- 
+
+    <section>
+  <div>
 <canvas id="structure" width="2000" height="650"> </canvas> 
-     
- 
-        <script>  //pour inserer du code JS dans html 
-     
- 
+
+
+        <script>  //pour inserer du code JS dans html
+
   var canvas = document.getElementById("structure");
-  var context = canvas.getContext("2d");
-   
-   
-  //Rectangle
-  context.beginPath();
-  context.fillStyle="blue";  
-  context.lineWidth="10";  
-  context.rect(500,50,600,515);
-  context.fill();
-  context.closePath();
-   
-  
-  
-   
-  //Cercle
-  context.beginPath();
-  context.fillStyle = "white";
-   
-  
-for(i=0;i<=5;i++)
-{
- for(j=0;j<=6;j++)
-  {
-  context.arc(545+85*j,95+85*i,35,Math.PI*2,false); 
-  context.fill();
-  context.beginPath();
-  }
-  }
+var context = canvas.getContext("2d");
+
+var cols = 7;
+var rows = 6;
+var cellSize = 85;
+var radius = 35;
+
+// Calculer la position de départ pour centrer le plateau
+var startX = (canvas.width - cols*cellSize) / 2;
+var startY = (canvas.height - rows*cellSize) / 2;
+
+// Rectangle bleu
+context.beginPath();
+context.fillStyle = "blue";
+context.rect(startX, startY, cols*cellSize, rows*cellSize);
+context.fill();
+context.closePath();
+
+// Cercles blancs
+for (var i = 0; i < rows; i++) {
+    for (var j = 0; j < cols; j++) {
+        context.beginPath();
+        context.arc(startX + j*cellSize + radius, startY + i*cellSize + radius, radius, 0, Math.PI*2, false);
+        context.fillStyle = "white";
+        context.fill();
+    }
+}
   
    
         </script> 
-    
-     
-    </body>
+   </div>
+   </section>
     <div>
         <nav>
             <a href="/">Accueil</a> |

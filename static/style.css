@@ -38,3 +38,14 @@ form{
     flex-direction: column;
 }
 
+.center{
+    background: rgb(175, 179, 176);
+    padding: 6%;
+    border: 10px solid #000000;
+    margin: 1vw;
+}
+
+canvas {
+    display: block;      /* pour que margin auto fonctionne */
+    margin: 0 auto;      /* centre horizontalement */
+}
