@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/style.css">
-    <title>{{ .Title }}</title>
+    <title>Puissance 4 - {{ .Title }}</title>
 </head>
 
 <body>
@@ -12,10 +12,10 @@
     <p>{{ .Message }}</p>
 
     <form method="post" action="/jeu">
-        <label>Joueur 1 :</label><br>
-        <input type="text" name="joueur1"><br><br>
-        <label>Joueur 2 :</label><br>
-        <textarea name="joueur2"></textarea><br><br>
+        <label for="joueur1">Joueur 1 :</label><br>
+        <input type="text" name="joueur1" id="joueur1" required><br><br>
+        <label for="joueur2">Joueur 2 :</label><br>
+        <input type="text" name="joueur2" id="joueur2" required><br><br>
         <button type="submit">Envoyer</button>
     </form>
     <div>

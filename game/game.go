@@ -3,18 +3,20 @@ package game
 import "fmt"
 
 func game() {
-	// défiinition grille du p4
+	// définition grille du p4
 	// pour chercher dans la grille le premier grille[] sert à définir la ligne donc grille [0] égal premiere ligne hoizontale
 	// et donc le deuxième grille[][0] la première colonne sachant quand on cherche on part de tout en haut à gauce
+	//  - Emrick:
+	// En gros grille[i][j] = un tableau de tableaux; i = ligne 1 et j = colonne 1
 	grille := [][]int{
-		{3, 3, 3, 3, 3, 3, 3, 3, 3},
-		{3, 0, 0, 0, 0, 0, 0, 0, 3},
-		{3, 0, 0, 0, 0, 0, 0, 0, 3},
-		{3, 0, 0, 0, 0, 0, 0, 0, 3},
-		{3, 0, 0, 0, 0, 0, 0, 0, 3},
-		{3, 0, 0, 0, 0, 0, 0, 0, 3},
-		{3, 0, 0, 0, 0, 0, 0, 0, 3},
-		{3, 3, 3, 3, 3, 3, 3, 3, 3},
+		{3, 3, 3, 3, 3, 3, 3, 3, 3}, //Ligne 1
+		{3, 0, 0, 0, 0, 0, 0, 0, 3}, //Ligne 2
+		{3, 0, 0, 0, 0, 0, 0, 0, 3}, //Ligne 3
+		{3, 0, 0, 0, 0, 0, 0, 0, 3}, //Ligne 4
+		{3, 0, 0, 0, 0, 0, 0, 0, 3}, //Ligne 5
+		{3, 0, 0, 0, 0, 0, 0, 0, 3}, //Ligne 6
+		{3, 0, 0, 0, 0, 0, 0, 0, 3}, //Ligne 7
+		{3, 3, 3, 3, 3, 3, 3, 3, 3}, //Ligne 8
 	}
 
 	//Yo les potes j'ai fait ça pour ajouter un jeton dans la premiere ligne de la grille mais je pense ça peut s'opti avec une boucle
@@ -42,3 +44,77 @@ func game() {
 	//et une fonction pour checker la win
 
 }
+
+/*func IsWin(){
+  	zqz
+  	compteur := 0
+  	for {
+  		//Check à droite
+  		for i := 0; i < 4; i++ {
+  			if pion at x+i y == 1 {
+  				compteur++
+  			} else {
+  			break
+  			}
+  		}
+  		//Check à gauche
+  		for i := 0; i < 4; i++ {
+  			if pion at x-i y == 1 {
+  				compteur++
+  			} else {
+  			break
+  			}
+  		}
+  		//Check en haut
+  		for i := 0; i < 4; i++ {
+      		if pion at x y+i == 1 {
+      			compteur++
+      		} else {
+     	    	break
+      		}
+  		}
+  		//Check en bas
+  		for i := 0; i < 4; i++ {
+   		   if pion at x y-i == 1 {
+    		    	compteur++
+  		    } else {
+  	        break
+  		    }
+  		}
+      	//check en diagonalesupérieur droite
+  		for i := 0; i < 4; i++ {
+  		    if pion at x+i y+i == 1 {
+  				compteur++
+  	    	} else {
+  	        break
+  	    	}
+  		}
+      	//check en diagonale supérieur gauche
+  		for i := 0; i < 4; i++ {
+  		    if pion at x-i y+i == 1 {
+  	 	       compteur++
+  		    } else {
+  	        break
+  		    }
+  		}
+  		//check en diagonale inferieure gauche
+  		for i := 0; i < 4; i++ {
+  		    if pion at x-i y-i == 1 {
+  		        compteur++
+  		    } else {
+  		    break
+  		    }
+  		}
+  		//check en diagonale inferieure droite
+  		for i := 0; i < 4; i++ {
+  		    if pion at x+i y-i == 1 {
+  		        compteur++
+  		    } else {
+  		    break
+  		    }
+  		}
+  		if compteur = 4 {
+  			return true
+  		}
+  	}
+  }*/
