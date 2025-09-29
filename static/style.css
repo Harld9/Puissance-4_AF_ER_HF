@@ -44,8 +44,3 @@ form{
     border: 10px solid #000000;
     margin: 1vw;
 }
-
-canvas {
-    display: block;      /* pour que margin auto fonctionne */
-    margin: 0 auto;      /* centre horizontalement */
-}

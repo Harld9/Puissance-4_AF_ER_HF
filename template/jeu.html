@@ -29,34 +29,33 @@
   var canvas = document.getElementById("structure");
 var context = canvas.getContext("2d");
 
-var cols = 7;
-var rows = 6;
-var cellSize = 85;
-var radius = 35;
+var colonnes = 7;
+var lignes = 6;
+var taille_de_la_cellule = 100;
+var taille_du_jeton = 48;
 
 // Calculer la position de départ pour centrer le plateau
-var startX = (canvas.width - cols*cellSize) / 2;
-var startY = (canvas.height - rows*cellSize) / 2;
+var position_x = (canvas.width - colonnes*taille_de_la_cellule) / 2;
+var position_y = (canvas.height - lignes*taille_de_la_cellule) / 2;
 
 // Rectangle bleu
 context.beginPath();
-context.fillStyle = "blue";
-context.rect(startX, startY, cols*cellSize, rows*cellSize);
+context.fillStyle = ("#0000A0");
+context.rect(position_x, position_y, colonnes*taille_de_la_cellule, lignes*taille_de_la_cellule);
 context.fill();
 context.closePath();
 
 // Cercles blancs
-for (var i = 0; i < rows; i++) {
-    for (var j = 0; j < cols; j++) {
+for (var i = 0; i < lignes; i++) {
+    for (var j = 0; j < colonnes; j++) {
         context.beginPath();
-        context.arc(startX + j*cellSize + radius, startY + i*cellSize + radius, radius, 0, Math.PI*2, false);
+        context.arc(position_x + j*taille_de_la_cellule + taille_de_la_cellule / 2, position_y + i*taille_de_la_cellule + taille_de_la_cellule / 2, taille_du_jeton, 0, Math.PI*2, false);
         context.fillStyle = "white";
         context.fill();
     }
+
 }
-  
-   
-        </script> 
+</script> 
    </div>
    </section>
     <div>
