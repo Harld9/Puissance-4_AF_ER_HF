@@ -1,28 +1,33 @@
 package game
 
-import "fmt"
+type Grille struct {
+	Tableau [8][9]int
+}
 
-func game() {
-	// définition grille du p4
-	// pour chercher dans la grille le premier grille[] sert à définir la ligne donc grille [0] égal premiere ligne hoizontale
-	// et donc le deuxième grille[][0] la première colonne sachant quand on cherche on part de tout en haut à gauce
-	//  - Emrick:
-	// En gros grille[i][j] = un tableau de tableaux; i = ligne 1 et j = colonne 1
-	grille := [][]int{
-		//Lignes :
-		/* 0 */ {3, 3, 3, 3, 3, 3, 3, 3, 3},
-		/* 1 */ {3, 0, 0, 0, 0, 0, 0, 0, 3},
-		/* 2 */ {3, 0, 0, 0, 0, 0, 0, 0, 3},
-		/* 3 */ {3, 0, 0, 0, 0, 0, 0, 0, 3},
-		/* 4 */ {3, 0, 0, 0, 0, 0, 0, 0, 3},
-		/* 5 */ {3, 0, 0, 0, 0, 0, 0, 0, 3},
-		/* 6 */ {3, 0, 0, 0, 0, 0, 0, 0, 3},
-		/* 7 */ {3, 3, 3, 3, 3, 3, 3, 3, 3},
-		// col : 0  1  2  3  4  5  6  7  8
+func Game() *Grille {
+
+	return &Grille{
+
+		// définition grille du p4
+		// pour chercher dans la grille le premier grille[] sert à définir la ligne donc grille [0] égal premiere ligne hoizontale
+		// et donc le deuxième grille[][0] la première colonne sachant quand on cherche on part de tout en haut à gauce
+		//  - Emrick:
+		// En gros grille[i][j] = un tableau de tableaux; i = ligne 1 et j = colonne 1
+		Tableau: [8][9]int{
+			{3, 3, 3, 3, 3, 3, 3, 3, 3}, // mur du haut
+			{3, 0, 0, 0, 0, 0, 0, 0, 3},
+			{3, 0, 0, 0, 0, 0, 0, 0, 3},
+			{3, 0, 0, 0, 0, 0, 0, 0, 3},
+			{3, 0, 0, 0, 0, 0, 0, 0, 3},
+			{3, 0, 0, 0, 0, 0, 0, 0, 3},
+			{3, 0, 0, 0, 0, 0, 0, 0, 3},
+			{3, 3, 3, 3, 3, 3, 3, 3, 3}, // mur du bas
+		},
 	}
+}
 
-	//Yo les potes j'ai fait ça pour ajouter un jeton dans la premiere ligne de la grille mais je pense ça peut s'opti avec une boucle
-	choix_joueur := 0
+//Yo les potes j'ai fait ça pour ajouter un jeton dans la premiere ligne de la grille mais je pense ça peut s'opti avec une boucle
+/*choix_joueur := 0
 	fmt.Println("Choisis l'emplacement de ton jeton sur la première ligne 1 = tout en bas à gauche, 7 = tout en bas à droite")
 	fmt.Scan(&choix_joueur)
 	switch choix_joueur {

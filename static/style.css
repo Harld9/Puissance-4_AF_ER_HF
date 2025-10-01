@@ -1,46 +1,125 @@
-h1{
+/* Reset & base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f6f6f6;
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    justify-content : center;
-}
-
-p{
-    display: flex;
-    align-items: center;
-    justify-content : center;
-}
-
-div{
-    display: flex;
-    align-items: center;
-    justify-content : center;
-}
-
-a{
-    text-decoration: none;
-    
-}
-
-a:hover{
-    text-decoration: none;
-    color: #000000;
-    
-}
-
-a:visited {
-  color: #000000;
-}
-
-form{
-    display: flex;
-    align-items: center;
-    justify-content : center;
     flex-direction: column;
 }
 
-.center{
-    background: rgb(175, 179, 176);
-    padding: 6%;
-    border: 10px solid #000000;
-    margin: 1vw;
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #1976d2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    z-index: 100;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+}
+
+.nav-menu li {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.nav-links {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-links:hover {
+    background-color: #FFD700;
+    color: #1976d2;
+    border-bottom: 3px solid #FFD700;
+    transform: scale(1.08);
+}
+
+/* Container pour contenu centré */
+.container {
+    flex: 1;
+    /* prend tout l’espace restant */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 750px;
+    padding-right: 350px;
+    /* laisse l’espace pour la navbar */
+}
+
+/* Tableau du jeu */
+table {
+    border-collapse: separate;
+    border-spacing: 6px;
+    /* espace entre les cellules */
+    background-color: #1565c0;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Cellules */
+td {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 32px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    background-color: #ffffff;
+    transition: transform 0.2s ease;
+}
+
+td:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+/* Couleurs des pions */
+.pion-rouge {
+    background-color: #ff4d4d;
+}
+
+.pion-jaune {
+    background-color: #ffd700;
+}
+
+/* Texte centré */
+h1,
+p {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 700px;
+    padding: 10px 0;
+}
+
+form {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+
+
+
 }

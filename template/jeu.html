@@ -11,61 +11,55 @@
     <h1>{{ .Title }}</h1>
     <p>{{ .Message }}</p>
 
+    <nav class="navbar">
+        <ul class="nav-menu">
+            <li><a href="/" class="nav-links">Accueil</a></li>
+            <li><a href="/about" class="nav-links">À propos</a></li>
+            <li><a href="/contact" class="nav-links">Contact</a></li>
+        </ul>
+
+
+        <!-- Tableau affichant la grille jouable (ignorer les murs) -->
+        <div class="container">
+            <table>
+                {{range $i, $ligne := .Tableau}}
+                {{if and (gt $i 0) (lt $i 7)}} <!-- ignore ligne 0 et 7 (murs) -->
+                <tr>
+                    {{range $j, $cell := $ligne}}
+                    {{if and (gt $j 0) (lt $j 8)}} <!-- ignore colonne 0 et 8 (murs) -->
+                    <td {{if eq $cell 0}}class="case-vide" {{end}} {{if eq $cell 1}}class="pion-rouge" {{end}} {{if eq
+                        $cell 2}}class="pion-jaune" {{end}}>
+                        {{if eq $cell 0}}.{{end}}
+                        {{if eq $cell 1}}🔴{{end}}
+                        {{if eq $cell 2}}🟡{{end}}
+                    </td>
+                    {{end}}
+                    {{end}}
+                </tr>
+                {{end}}
+                {{end}}
+            </table>
+        </div>
+        <!--
     <form method="post" action="/jeu">
-        <label for="joueur1">Joueur 1 :</label><br> <!-- Le for sert à lier le label au champ de saisie avec le même id; quand on survole le label, le champ correspondant est mis en avant -->
+        <label for="joueur1">Joueur 1 :</label><br>
+        Le for sert à lier le label au champ de saisie avec le même id; quand on survole le label, le champ correspondant est mis en avant
         <input type="text" name="joueur1" id="joueur1" required><br><br>
         <label for="joueur2">Joueur 2 :</label><br>
         <input type="text" name="joueur2" id="joueur2" required><br><br>
         <button type="submit">Envoyer</button>
-    </form> 
+    </form>
 
     <section>
-  <div>
-<canvas id="structure" width="2000" height="650"> </canvas> 
+        <div>
+            <canvas id="structure" width="2000" height="650"> </canvas>
+            <script>
+                // Ici tu avais ton code JS pour dessiner le plateau sur canvas
+            </script>
+        </div>
+    </section>
+    -->
 
-
-        <script>  //pour inserer du code JS dans html
-
-  var canvas = document.getElementById("structure");
-var context = canvas.getContext("2d");
-
-var colonnes = 7;
-var lignes = 6;
-var taille_de_la_cellule = 100;
-var taille_du_jeton = 48;
-
-// Calculer la position de départ pour centrer le plateau
-var position_x = (canvas.width - colonnes*taille_de_la_cellule) / 2;
-var position_y = (canvas.height - lignes*taille_de_la_cellule) / 2;
-
-// Rectangle bleu
-context.beginPath();
-context.fillStyle = ("#0000A0");
-context.rect(position_x, position_y, colonnes*taille_de_la_cellule, lignes*taille_de_la_cellule);
-context.fill();
-context.closePath();
-
-// Cercles blancs
-for (var i = 0; i < lignes; i++) {
-    for (var j = 0; j < colonnes; j++) {
-        context.beginPath();
-        context.arc(position_x + j*taille_de_la_cellule + taille_de_la_cellule / 2, position_y + i*taille_de_la_cellule + taille_de_la_cellule / 2, taille_du_jeton, 0, Math.PI*2, false);
-        context.fillStyle = "white";
-        context.fill();
-    }
-
-}
-</script> 
-   </div>
-   </section>
-    <div>
-        <nav>
-            <a href="/">Accueil</a> |
-            <a href="/about">À propos</a> |
-            <a href="/contact">Contact</a> 
-
-        </nav>
-    </div>
 </body>
 
 </html>
