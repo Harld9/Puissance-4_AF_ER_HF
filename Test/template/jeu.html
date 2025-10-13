@@ -18,7 +18,7 @@
             <li><a href="/contact" class="nav-links">Contact</a></li>
         </ul>
 
-
+<button method="post"></button>
         <!-- Tableau affichant la grille jouable (ignorer les murs) -->
         <div class="container">
             <table>
@@ -29,7 +29,7 @@
                     {{if and (gt $j 0) (lt $j 8)}} <!-- ignore colonne 0 et 8 (murs) -->
                     <td {{if eq $cell 0}}class="case-vide" {{end}} {{if eq $cell 1}}class="pion-rouge" {{end}} {{if eq
                         $cell 2}}class="pion-jaune" {{end}}>
-                        {{if eq $cell 0}} {{end}}
+                        {{if eq $cell 0}}🟡{{end}}
                         {{if eq $cell 1}}🔴{{end}}
                         {{if eq $cell 2}}🟡{{end}}
                     </td>

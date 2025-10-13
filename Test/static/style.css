@@ -79,7 +79,7 @@ table {
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* Toutes les Cellules */
+/* Cellules */
 td {
     width: 60px;
     height: 60px;
@@ -89,8 +89,12 @@ td {
     border-radius: 50%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
     background-color: #ffffff;
-    border: 2px dashed #1976d2; /* Modifie l'apparence du cercle de puissance 4) */
-  
+    transition: transform 0.2s ease;
+}
+
+td:hover {
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 /* Couleurs des pions */
@@ -118,17 +122,4 @@ form {
 
 
 
-}
-
-/* Premières cellules du tableau de puissance 4*/
-table tr:first-child td {
-    background-color: #e3f2fd;
-    border: 2px dashed #1976d2;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-table tr:first-child td:hover {
-    background-color: #fff;
-    transform: scale(1.05);
 }
