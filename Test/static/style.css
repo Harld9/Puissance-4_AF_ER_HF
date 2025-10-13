@@ -123,3 +123,16 @@ form {
 
 
 }
+
+/* Premières cellules du tableau de puissance 4*/
+table tr:first-child td {
+    background-color: #e3f2fd;
+    border: 2px dashed #1976d2;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+table tr:first-child td:hover {
+    background-color: #fff;
+    transform: scale(1.05);
+}

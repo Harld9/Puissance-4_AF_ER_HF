@@ -120,15 +120,21 @@ form {
 
 }
 
-/* Premières cellules du tableau de puissance 4*/
-table tr:first-child td {
-    background-color: #e3f2fd;
+.ligne_uno {
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 32px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+    background-color: #30ff5d;
     border: 2px dashed #1976d2;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
 
-table tr:first-child td:hover {
+.ligne_uno:hover {
     background-color: #fff;
     transform: scale(1.05);
 }
