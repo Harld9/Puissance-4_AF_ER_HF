@@ -22,18 +22,60 @@
         <!-- Tableau affichant la grille jouable (ignorer les murs) -->
         <div class="container">
             <table>
+                <!-- Mot-clé Signification :
+                    eq	égal à
+                    ne	différent de
+                    lt	inférieur à
+                    le	≤
+                    gt	supérieur à
+                    ge	≥
+                    -->
                 {{range $i, $ligne := .Tableau}}
+                <!--for i, ligne := range data.Tableau
+                -->
                 {{if and (gt $i 0) (lt $i 7)}} <!-- ignore ligne 0 et 7 (murs) -->
+                <!--Cela veux dire :
+                if i > 0 && i < 7 {
+                fmt.Println("On est entre 1 et 6")  
+                }
+                -->
                 <tr>
                     {{range $j, $cell := $ligne}}
+                    <!--for j, cell := range ligne 
+                    -->
                     {{if and (gt $j 0) (lt $j 8)}} <!-- ignore colonne 0 et 8 (murs) -->
-                    <td {{if eq $cell 0}}class="case-vide" {{end}} {{if eq $cell 1}}class="pion-rouge" {{end}} {{if eq
-                        $cell 2}}class="pion-jaune" {{end}}>
+                    <!--if j > 0 && j < 8
+                    -->
+                    <td
+                        {{if eq $cell 0}}class="case-vide" {{end}}
+                        {{if eq $cell 1}}class="pion-rouge" {{end}} 
+                        {{if eq $cell 2}}class="pion-jaune" {{end}}>
+
+                        {{if }}
+
                         {{if eq $cell 0}} {{end}}
                         {{if eq $cell 1}}🔴{{end}}
                         {{if eq $cell 2}}🟡{{end}}
-                    </td>
-                    {{end}}
+                    </td> <!--
+                    if cell == 0 {
+				    	fmt.Fprint(w, ` class="case-vide"`)
+				    }
+				    if cell == 1 {
+				    	fmt.Fprint(w, ` class="pion-rouge"`)
+				    }
+				    if cell == 2 {
+				    	fmt.Fprint(w, ` class="pion-jaune"`)
+				    }
+				    fmt.Fprint(w, ">")
+
+                    if cell == 1 {
+				    	fmt.Fprint(w, "🔴")
+			    	}
+				    if cell == 2 {
+				    	fmt.Fprint(w, "🟡")
+                    -->
+                    
+                    {{end}} <!-- } (fermeture d’un bloc)-->
                     {{end}}
                 </tr>
                 {{end}}
