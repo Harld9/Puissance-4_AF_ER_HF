@@ -16,12 +16,14 @@ type PageData struct {
 	Title   string
 	Message string
 	Tableau [8][9]int
+	Player1 string
+	Player2 string
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
 	data := PageData{
 		Title:   "Accueil",
-		Message: "Bienvenue chez la PUISSANCE 🎉",
+		Message: "Bienvenue Au Puissance 4 🎉",
 	}
 	tmpl := template.Must(template.ParseFiles("template/index.html"))
 	tmpl.Execute(w, data)
@@ -61,7 +63,7 @@ func Contact(w http.ResponseWriter, r *http.Request) {
 
 func Jeu(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
-		grille := game.Game()
+		grille := game.InitGame()
 		data := PageData{
 			Title:   "Jeu en cours",
 			Message: "C'est au tour de ",
@@ -75,6 +77,20 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 	data := PageData{
 		Title:   "Entrée des joueurs",
 		Message: "Saisissez les noms des Joueurs",
+	}
+	tmpl := template.Must(template.ParseFiles("template/jeu.html"))
+	tmpl.Execute(w, data)
+}
+
+func handleStart(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Erreur formulaire", http.StatusBadRequest)
+		return
+	}
+
+	data := PageData{
+		Player1: r.FormValue("player1"),
+		Player2: r.FormValue("player2"),
 	}
 	tmpl := template.Must(template.ParseFiles("template/jeu.html"))
 	tmpl.Execute(w, data)

@@ -3,14 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="../static/style.css">
     <title>Puissance 4 - {{ .Title }}</title> <!-- Titre de la page -->
 </head>
 
 <body> 
     <h1>{{ .Title }}</h1>
     <p>{{ .Message }}</p>
-
     <nav class="navbar">
         <ul class="nav-menu">
             <li><a href="/" class="nav-links">Accueil</a></li>
@@ -18,14 +17,13 @@
             <li><a href="/contact" class="nav-links">Contact</a></li>
         </ul>
     </nav>
-
-            <form method="post" action="/jeu">
-                 <label for="joueur1">Joueur 1 :</label><br>
-                <input type="text" name="joueur1" id="joueur1" required><br><br>
-                <label for="joueur2">Joueur 2 :</label><br>
-                <input type="text" name="joueur2" id="joueur2" required><br><br>
-                <button type="submit">Envoyer</button>
+            <form action="/jeu" method="POST">
+                <label>Joueur 1 : <input type="text" name="player1"></label><br>
+                <label>Joueur 2 : <input type="text" name="player2"></label><br>
+                <button type="submit">Commencer la partie</button>
             </form>
+    <h2>{{.Player1}} VS {{.Player2}} — Que le meilleur gagne !</h2>
+		<!-- Ici tu peux afficher le plateau -->
         <!-- Tableau affichant la grille jouable (ignorer les murs) -->
         <div class="container">
             <table>
@@ -106,18 +104,6 @@
                 {{end}}
             </table>
         </div>
-    
-
-    <<section>
-        <div>
-            <canvas id="structure" width="2000" height="650"> </canvas>
-            <script>
-                // Ici tu avais ton code JS pour dessiner le plateau sur canvas
-            </script>
-        </div>
-    </section>
-    -->
-
 </body>
 
 </html>
