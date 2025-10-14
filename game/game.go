@@ -50,76 +50,67 @@ func Tour_joueur(grille *Grille, r *http.Request) {
 	}
 }
 
-/*func IsWin(){
-  	zqz
-  	compteur := 0
-  	for {
-  		//Check à droite
-  		for i := 0; i < 4; i++ {
-  			if pion at x+i y == 1 {
-  				compteur++
-  			} else {
-  			break
-  			}
-  		}
-  		//Check à gauche
-  		for i := 0; i < 4; i++ {
-  			if pion at x-i y == 1 {
-  				compteur++
-  			} else {
-  			break
-  			}
-  		}
-  		//Check en haut
-  		for i := 0; i < 4; i++ {
-      		if pion at x y+i == 1 {
-      			compteur++
-      		} else {
-     	    	break
-      		}
-  		}
-  		//Check en bas
-  		for i := 0; i < 4; i++ {
-   		   if pion at x y-i == 1 {
-    		    	compteur++
-  		    } else {
-  	        break
-  		    }
-  		}
-      	//check en diagonalesupérieur droite
-  		for i := 0; i < 4; i++ {
-  		    if pion at x+i y+i == 1 {
-  				compteur++
-  	    	} else {
-  	        break
-  	    	}
-  		}
-      	//check en diagonale supérieur gauche
-  		for i := 0; i < 4; i++ {
-  		    if pion at x-i y+i == 1 {
-  	 	       compteur++
-  		    } else {
-  	        break
-  		    }
-  		}
-  		//check en diagonale inferieure gauche
-  		for i := 0; i < 4; i++ {
-  		    if pion at x-i y-i == 1 {
-  		        compteur++
-  		    } else {
-  		    break
-  		    }
-  		}
-  		//check en diagonale inferieure droite
-  		for i := 0; i < 4; i++ {
-  		    if pion at x+i y-i == 1 {
-  		        compteur++
-  		    } else {
-  		    break
-  		    }
-  		}
-  		if compteur = 4 {
-  			return true
-  		}
-  	}
-  }*/
+/*func IsWinPlayer1() {
+	nb_colonnes := 7
+	nb_lignes := 6
+
+	// Horizontal
+	compteurHorizontal := 0
+	for i := -3; i <= 3; i++ {
+		if x+i >= 0 && x+i < nb_colonnes { // reste dans la grille
+			if plateau[y][x+i] == 1 { // pion du joueur
+				compteurHorizontal++
+			} else {
+				compteurHorizontal = 0
+			}
+			if compteurHorizontal >= 4 {
+				fmt.Print("Victoire horizontal")
+			}
+		}
+	}
+
+	// Vertical
+	compteurVertical := 0
+	for i := -3; i <= 3; i++ {
+		if y+i >= 0 && y+i < nb_lignes {
+			if plateau[y+i][x] == 1 {
+				compteurVertical++
+			} else {
+				compteurVertical = 0
+			}
+			if compteurVertical >= 4 {
+				fmt.Print("Victoire vertical")
+			}
+		}
+	}
+
+	// Diagonale /
+	compteurDiag1 := 0
+	for i := -3; i <= 3; i++ {
+		if x+i >= 0 && x+i < nb_colonnes && y-i >= 0 && y-i < nb_lignes {
+			if plateau[y-i][x+i] == 1 {
+				compteurDiag1++
+			} else {
+				compteurDiag1 = 0
+			}
+			if compteurDiag1 >= 4 {
+				fmt.Print("Victoire diagonale en haut/bas droit")
+			}
+		}
+	}
+
+	// Diagonale \
+	compteurDiag2 := 0
+	for i := -3; i <= 3; i++ {
+		if x+i >= 0 && x+i < nb_colonnes && y+i >= 0 && y+i < nb_lignes {
+			if plateau[y+i][x+i] == 1 {
+				compteurDiag2++
+			} else {
+				compteurDiag2 = 0
+			}
+			if compteurDiag2 >= 4 {
+				fmt.Print("Victoire diagonale en haut/bas gauche")
+			}
+		}
+	}
+} */
