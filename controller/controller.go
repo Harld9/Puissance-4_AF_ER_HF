@@ -18,6 +18,7 @@ type PageData struct {
 	Tableau [8][9]int
 	Player1 string
 	Player2 string
+	EnCours bool
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -64,39 +65,35 @@ func Contact(w http.ResponseWriter, r *http.Request) {
 var G *game.GameData = game.InitGame()
 
 func Jeu(w http.ResponseWriter, r *http.Request) {
-	G.J1 = "Googoo"
-	G.J2 = "Gaga"
-
 	if r.Method == http.MethodPost {
+		player1 := r.FormValue("player1")
+		player2 := r.FormValue("player2")
+		if player1 != "" && player2 != "" {
+			G.J1 = player1
+			G.J2 = player2
+			G.Début = true
+		}
 		game.Tour_joueur(G, r)
-		data := PageData{
-			Title:   "Jeu en cours",
-			Message: "C'est au tour de ",
-			Tableau: G.Tableau,
-		}
-		tmpl := template.Must(template.ParseFiles("template/jeu.html"))
-		tmpl.Execute(w, data)
+		http.Redirect(w, r, "/jeu", http.StatusSeeOther) // Redirection après POST
 		return
 	}
-	if !G.Début {
-		data := PageData{
-			Title:   "Entrée des joueurs",
-			Message: "Saisissez les noms des Joueurs",
-		}
-		tmpl := template.Must(template.ParseFiles("template/jeu.html"))
-		tmpl.Execute(w, data)
-	}
-}
 
-func handleStart(w http.ResponseWriter, r *http.Request) {
-	if err := r.ParseForm(); err != nil {
-		http.Error(w, "Erreur formulaire", http.StatusBadRequest)
-		return
+	var title, message string
+	if !G.Début {
+		title = "Bienvenue sur Puissance 4"
+		message = "Entrez les noms des joueurs pour commencer la partie"
+	} else {
+		title = "Battle de Cerveaux"
+		message = "Partie en cours !"
 	}
 
 	data := PageData{
-		Player1: r.FormValue("player1"),
-		Player2: r.FormValue("player2"),
+		Title:   title,
+		Message: message,
+		Tableau: G.Tableau,
+		Player1: G.J1,
+		Player2: G.J2,
+		EnCours: G.Début,
 	}
 	tmpl := template.Must(template.ParseFiles("template/jeu.html"))
 	tmpl.Execute(w, data)

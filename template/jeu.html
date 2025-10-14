@@ -17,11 +17,13 @@
             <li><a href="/contact" class="nav-links">Contact</a></li>
         </ul>
     </nav>
+    {{if not .EnCours}}
             <form action="/jeu" method="POST">
-                <label>Joueur 1 : <input type="text" name="player1"></label><br>
-                <label>Joueur 2 : <input type="text" name="player2"></label><br>
+                <label>Joueur 1 : <input class="input" type="text" name="player1" ></label><br>
+                <label>Joueur 2 : <input class="input" type="text" name="player2" ></label><br>
                 <button type="submit">Commencer la partie</button>
             </form>
+    {{end}}
     <h2>{{.Player1}} VS {{.Player2}} — Que le meilleur gagne !</h2>
 		<!-- Ici tu peux afficher le plateau -->
         <!-- Tableau affichant la grille jouable (ignorer les murs) -->
@@ -51,7 +53,7 @@
                             {{if and (gt $j 0) (lt $j 8)}} <!-- ignore colonne 0 et 8 (murs) -->
                             <!--if j > 0 && j < 8
                             -->
-                            <td
+                            <td 
                                 {{if eq $cell 0}}
                                     class="case-vide" 
                                 {{end}}
@@ -71,7 +73,7 @@
 
                                 {{if eq $cell 0}} 
                                     
-                                {{end}}
+                                {{end}} 
                                 {{if eq $cell 1}}
                                     🔴
                                 {{end}}
