@@ -1,6 +1,7 @@
 package game
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -61,15 +62,18 @@ func Tour_joueur(g *GameData, r *http.Request) {
 	}
 }
 
-/*func IsWinPlayer1() {
+func IsWinPlayer1(g *GameData) {
 	nb_colonnes := 7
 	nb_lignes := 6
-
+	var x int
+	var y int
+	x = g.Position[0].Col
+	y = g.Position[0].Ligne
 	// Horizontal
 	compteurHorizontal := 0
 	for i := -3; i <= 3; i++ {
 		if x+i >= 0 && x+i < nb_colonnes { // reste dans la grille
-			if plateau[y][x+i] == 1 { // pion du joueur
+			if g.Tableau[y][x+i] == 1 { // pion du joueur
 				compteurHorizontal++
 			} else {
 				compteurHorizontal = 0
@@ -84,7 +88,7 @@ func Tour_joueur(g *GameData, r *http.Request) {
 	compteurVertical := 0
 	for i := -3; i <= 3; i++ {
 		if y+i >= 0 && y+i < nb_lignes {
-			if plateau[y+i][x] == 1 {
+			if g.Tableau[y+i][x] == 1 {
 				compteurVertical++
 			} else {
 				compteurVertical = 0
@@ -99,7 +103,7 @@ func Tour_joueur(g *GameData, r *http.Request) {
 	compteurDiag1 := 0
 	for i := -3; i <= 3; i++ {
 		if x+i >= 0 && x+i < nb_colonnes && y-i >= 0 && y-i < nb_lignes {
-			if plateau[y-i][x+i] == 1 {
+			if g.Tableau[y-i][x+i] == 1 {
 				compteurDiag1++
 			} else {
 				compteurDiag1 = 0
@@ -114,7 +118,7 @@ func Tour_joueur(g *GameData, r *http.Request) {
 	compteurDiag2 := 0
 	for i := -3; i <= 3; i++ {
 		if x+i >= 0 && x+i < nb_colonnes && y+i >= 0 && y+i < nb_lignes {
-			if plateau[y+i][x+i] == 1 {
+			if g.Tableau[y+i][x+i] == 1 {
 				compteurDiag2++
 			} else {
 				compteurDiag2 = 0
@@ -124,4 +128,4 @@ func Tour_joueur(g *GameData, r *http.Request) {
 			}
 		}
 	}
-} */
+}
