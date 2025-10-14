@@ -61,25 +61,31 @@ func Contact(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "contact.html", data)
 }
 
+var G *game.GameData = game.InitGame()
+
 func Jeu(w http.ResponseWriter, r *http.Request) {
+	G.J1 = "Googoo"
+	G.J2 = "Gaga"
+
 	if r.Method == http.MethodPost {
-		grille := game.InitGame()
+		game.Tour_joueur(G, r)
 		data := PageData{
 			Title:   "Jeu en cours",
 			Message: "C'est au tour de ",
-			Tableau: grille.Tableau,
+			Tableau: G.Tableau,
 		}
 		tmpl := template.Must(template.ParseFiles("template/jeu.html"))
 		tmpl.Execute(w, data)
 		return
 	}
-
-	data := PageData{
-		Title:   "Entrée des joueurs",
-		Message: "Saisissez les noms des Joueurs",
+	if !G.Début {
+		data := PageData{
+			Title:   "Entrée des joueurs",
+			Message: "Saisissez les noms des Joueurs",
+		}
+		tmpl := template.Must(template.ParseFiles("template/jeu.html"))
+		tmpl.Execute(w, data)
 	}
-	tmpl := template.Must(template.ParseFiles("template/jeu.html"))
-	tmpl.Execute(w, data)
 }
 
 func handleStart(w http.ResponseWriter, r *http.Request) {
