@@ -63,8 +63,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 750px;
-    padding-right: 350px;
     /* laisse l’espace pour la navbar */
 }
 
@@ -115,9 +113,7 @@ form {
     display: flex;
     text-align: center;
     justify-content: center;
-
-
-
+    font-size: 10px;
 }
 
 .ligne_uno {

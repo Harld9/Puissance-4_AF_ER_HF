@@ -7,7 +7,7 @@
     <title>Puissance 4 - {{ .Title }}</title> <!-- Titre de la page -->
 </head>
 
-<body>
+<body> 
     <h1>{{ .Title }}</h1>
     <p>{{ .Message }}</p>
 
@@ -17,8 +17,15 @@
             <li><a href="/about" class="nav-links">À propos</a></li>
             <li><a href="/contact" class="nav-links">Contact</a></li>
         </ul>
+    </nav>
 
-
+            <form method="post" action="/jeu">
+                 <label for="joueur1">Joueur 1 :</label><br>
+                <input type="text" name="joueur1" id="joueur1" required><br><br>
+                <label for="joueur2">Joueur 2 :</label><br>
+                <input type="text" name="joueur2" id="joueur2" required><br><br>
+                <button type="submit">Envoyer</button>
+            </form>
         <!-- Tableau affichant la grille jouable (ignorer les murs) -->
         <div class="container">
             <table>
@@ -99,17 +106,9 @@
                 {{end}}
             </table>
         </div>
-        <!--
-    <form method="post" action="/jeu">
-        <label for="joueur1">Joueur 1 :</label><br>
-        Le for sert à lier le label au champ de saisie avec le même id; quand on survole le label, le champ correspondant est mis en avant
-        <input type="text" name="joueur1" id="joueur1" required><br><br>
-        <label for="joueur2">Joueur 2 :</label><br>
-        <input type="text" name="joueur2" id="joueur2" required><br><br>
-        <button type="submit">Envoyer</button>
-    </form>
+    
 
-    <section>
+    <<section>
         <div>
             <canvas id="structure" width="2000" height="650"> </canvas>
             <script>
