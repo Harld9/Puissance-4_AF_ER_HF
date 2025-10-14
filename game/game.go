@@ -23,7 +23,6 @@ type GameData struct {
 }
 
 func InitGame() *GameData {
-
 	return &GameData{
 		J1: "",
 		J2: "",
@@ -55,15 +54,22 @@ func Tour_joueur(g *GameData, r *http.Request) {
 	col, err := strconv.Atoi(colStr)
 	if err != nil {
 		log.Println("Erreur conversion colonne :", err)
+		return
 	}
 
 	for ligne := 6; ligne >= 1; ligne-- {
 		if g.Tableau[ligne][col] == 0 {
-			g.Tableau[ligne][col]++
+			g.Tableau[ligne][col] = g.Tour
 			g.Position[0].Col = col
 			g.Position[0].Ligne = ligne
 			break
 		}
+	}
+	// Alterne le joueur
+	if g.Tour == 1 {
+		g.Tour = 2
+	} else {
+		g.Tour = 1
 	}
 }
 
