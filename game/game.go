@@ -13,10 +13,13 @@ type Position struct {
 }
 
 type GameData struct {
-	J1       string
-	J2       string
-	Tableau  [8][9]int
-	Position [1]Position
+	J1         string
+	J2         string
+	Tableau    [8][9]int
+	Position   [1]Position
+	Début      bool
+	Tour       int
+	TourJoueur string
 }
 
 func InitGame() *GameData {
@@ -42,6 +45,8 @@ func InitGame() *GameData {
 		Position: [1]Position{
 			{Ligne: 0, Col: 0},
 		},
+		Début: false,
+		Tour:  1,
 	}
 }
 
