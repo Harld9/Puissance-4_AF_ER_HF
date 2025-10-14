@@ -103,7 +103,6 @@ td {
 }
 
 /* Texte centré */
-h1,h2
 p {
     text-align: center;
     margin: 20px;
@@ -112,6 +111,16 @@ p {
     margin-top: 100px;
     border-spacing: 10px;
 }
+h1,h2{
+    text-align: center;
+    margin: 20px;
+    max-width: 400px;
+    padding: 10px 0;
+    margin-top: 100px;
+    border-spacing: 10px;
+}
+
+
 
 form {
     display: flex;
