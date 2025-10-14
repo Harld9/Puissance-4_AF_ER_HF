@@ -6,14 +6,23 @@ import (
 	"strconv"
 )
 
-type Grille struct {
-	Tableau [8][9]int
+type Position struct {
+	Ligne int
+	Col   int
 }
 
-func InitGame() *Grille {
+type GameData struct {
+	J1       string
+	J2       string
+	Tableau  [8][9]int
+	Position [1]Position
+}
 
-	return &Grille{
+func InitGame() *GameData {
 
+	return &GameData{
+		J1: "",
+		J2: "",
 		// définition grille du p4
 		// pour chercher dans la grille le premier grille[] sert à définir la ligne donc grille [0] égal premiere ligne hoizontale
 		// et donc le deuxième grille[][0] la première colonne sachant quand on cherche on part de tout en haut à gauce
@@ -29,10 +38,13 @@ func InitGame() *Grille {
 			{3, 0, 0, 0, 0, 0, 0, 0, 3},
 			{3, 3, 3, 3, 3, 3, 3, 3, 3}, // mur du bas
 		},
+		Position: [1]Position{
+			{Ligne: 0, Col: 0},
+		},
 	}
 }
 
-func Tour_joueur(grille *Grille, r *http.Request) {
+func Tour_joueur(g *GameData, r *http.Request) {
 	colStr := r.FormValue("colonne")
 	col, err := strconv.Atoi(colStr)
 	if err != nil {
@@ -40,11 +52,10 @@ func Tour_joueur(grille *Grille, r *http.Request) {
 	}
 
 	for ligne := 6; ligne >= 1; ligne-- {
-		if grille.Tableau[ligne][col] == 0 {
-			grille.Tableau[ligne][col]++
-			/* Ajouter dans structure position dernier pion joué:
-			Position[0] == ligne
-			Position[1] == col */
+		if g.Tableau[ligne][col] == 0 {
+			g.Tableau[ligne][col]++
+			g.Position[0].Col = col
+			g.Position[0].Ligne = ligne
 			break
 		}
 	}
