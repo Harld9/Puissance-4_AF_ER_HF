@@ -71,7 +71,7 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 		if player1 != "" && player2 != "" {
 			G.J1 = player1
 			G.J2 = player2
-			G.Début = true
+			G.Debut = true
 		}
 		game.Tour_joueur(G, r)
 		http.Redirect(w, r, "/jeu", http.StatusSeeOther) // Redirection après POST
@@ -79,7 +79,7 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var title, message string
-	if !G.Début {
+	if !G.Debut {
 		title = "Bienvenue sur Puissance 4"
 		message = "Entrez les noms des joueurs pour commencer la partie"
 	} else {
@@ -93,7 +93,7 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 		Tableau: G.Tableau,
 		Player1: G.J1,
 		Player2: G.J2,
-		EnCours: G.Début,
+		EnCours: G.Debut,
 	}
 	tmpl := template.Must(template.ParseFiles("template/jeu.html"))
 	tmpl.Execute(w, data)

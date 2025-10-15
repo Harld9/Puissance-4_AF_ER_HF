@@ -7,7 +7,7 @@
     <title>Puissance 4 - {{ .Title }}</title> <!-- Titre de la page -->
 </head>
 
-<body> 
+<body>
     <h1>{{ .Title }}</h1>
     <p>{{ .Message }}</p>
     <nav class="navbar">
@@ -18,18 +18,20 @@
         </ul>
     </nav>
     {{if not .EnCours}}
-            <form action="/jeu" method="POST">
-                <label>Joueur 1 : <input class="input" type="text" name="player1" ></label><br>
-                <label>Joueur 2 : <input class="input" type="text" name="player2" ></label><br>
-                <button type="submit">Commencer la partie</button>
-            </form>
+    <div class="Formulaire">
+        <form action="/jeu" method="POST">
+            <label>Joueur 1 : <input class="input" type="text" name="player1"></label><br>
+            <label>Joueur 2 : <input class="input" type="text" name="player2"></label><br>
+            <button type="submit" class="Boutonsubmit">Commencer la partie</button>
+        </form>
+    </div>
     {{end}}
     <h2>{{.Player1}} VS {{.Player2}} — Que le meilleur gagne !</h2>
-		<!-- Ici tu peux afficher le plateau -->
-        <!-- Tableau affichant la grille jouable (ignorer les murs) -->
-        <div class="container">
-            <table>
-                <!-- Mot-clé Signification :
+    <!-- Ici tu peux afficher le plateau -->
+    <!-- Tableau affichant la grille jouable (ignorer les murs) -->
+    <div class="container">
+        <table>
+            <!-- Mot-clé Signification :
                     eq	égal à
                     ne	différent de
                     lt	inférieur à
@@ -37,50 +39,42 @@
                     gt	supérieur à
                     ge	≥
                     -->
-                {{range $i, $ligne := .Tableau}}
-                <!--for i, ligne := range data.Tableau
+            {{range $i, $ligne := .Tableau}}
+            <!--for i, ligne := range data.Tableau
                 -->
-                    {{if and (gt $i 0) (lt $i 7)}} <!-- ignore ligne 0 et 7 (murs) -->
-                    <!--Cela veux dire :
+            {{if and (gt $i 0) (lt $i 7)}} <!-- ignore ligne 0 et 7 (murs) -->
+            <!--Cela veux dire :
                     if i > 0 && i < 7 {
                     fmt.Println("On est entre 1 et 6")  
                     }
                     -->
-                    <tr>
-                        {{range $j, $cell := $ligne}}
-                        <!--for j, cell := range ligne 
+            <tr>
+                {{range $j, $cell := $ligne}}
+                <!--for j, cell := range ligne 
                         -->
-                            {{if and (gt $j 0) (lt $j 8)}} <!-- ignore colonne 0 et 8 (murs) -->
-                            <!--if j > 0 && j < 8
+                {{if and (gt $j 0) (lt $j 8)}} <!-- ignore colonne 0 et 8 (murs) -->
+                <!--if j > 0 && j < 8
                             -->
-                            <td 
-                                {{if eq $cell 0}}
-                                    class="case-vide" 
-                                {{end}}
-                                {{if eq $cell 1}}
-                                    class="pion-rouge" 
-                                {{end}} 
-                                {{if eq $cell 2}}
-                                    class="pion-jaune" 
-                                {{end}}>
+                <td {{if eq $cell 0}} class="case-vide" {{end}} {{if eq $cell 1}} class="pion-rouge" {{end}} {{if eq
+                    $cell 2}} class="pion-jaune" {{end}}>
 
-                                {{if and (eq $i 1) (eq $cell 0)}} 
-                                    <form method="post" action="/jeu">
-                                        <input type="hidden" name="colonne" value="{{$j}}">
-                                        <button type="submit" class="ligne_uno">⬇</button>
-                                    </form>
-                                {{end}} 
+                    {{if and (eq $i 1) (eq $cell 0)}}
+                    <form method="post" action="/jeu">
+                        <input type="hidden" name="colonne" value="{{$j}}">
+                        <button type="submit" class="ligne_uno">⬇</button>
+                    </form>
+                    {{end}}
 
-                                {{if eq $cell 0}} 
-                                    
-                                {{end}} 
-                                {{if eq $cell 1}}
-                                    🔴
-                                {{end}}
-                                {{if eq $cell 2}}
-                                    🟡
-                                {{end}}
-                            </td> <!--
+                    {{if eq $cell 0}}
+
+                    {{end}}
+                    {{if eq $cell 1}}
+                    🔴
+                    {{end}}
+                    {{if eq $cell 2}}
+                    🟡
+                    {{end}}
+                </td> <!--
                             if cell == 0 {
 	    			        	fmt.Fprint(w, ` class="case-vide"`)
 		    		        }
@@ -98,14 +92,14 @@
 			        	    if cell == 2 {
 				            	fmt.Fprint(w, "🟡")
                             -->
-                    
-                           {{end}} <!-- } (fermeture d’un bloc)-->
-                        {{end}}
-                    </tr>
-                    {{end}}
+
+                {{end}} <!-- } (fermeture d’un bloc)-->
                 {{end}}
-            </table>
-        </div>
+            </tr>
+            {{end}}
+            {{end}}
+        </table>
+    </div>
 </body>
 
 </html>
