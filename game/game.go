@@ -17,7 +17,7 @@ type GameData struct {
 	J2         string
 	Tableau    [8][9]int
 	Position   [1]Position
-	Début      bool
+	Debut      bool
 	Tour       int
 	TourJoueur string
 }
@@ -44,16 +44,28 @@ func InitGame() *GameData {
 		Position: [1]Position{
 			{Ligne: 0, Col: 0},
 		},
-		Début: false,
+		Debut: false,
 		Tour:  1,
 	}
 }
 
 func Tour_joueur(g *GameData, r *http.Request) {
+
+	if g.Debut == false {
+		log.Println("La partie n'est pas en cours.")
+		return
+	}
+
 	colStr := r.FormValue("colonne")
 	col, err := strconv.Atoi(colStr)
 	if err != nil {
 		log.Println("Erreur conversion colonne :", err)
+		return
+	}
+
+	// Vérifie si la colonne reçue est entre 1 et 7
+	if col < 1 || col > 7 {
+		log.Println("Colonne hors borne :", col)
 		return
 	}
 
@@ -65,6 +77,21 @@ func Tour_joueur(g *GameData, r *http.Request) {
 			break
 		}
 	}
+
+	player := g.Tour
+
+	if WinCheck(g, player) { // Check si le joueur a gagné
+		g.TourJoueur = fmt.Sprintf("Joueur numéro %d gagne", player)
+		g.Debut = false
+		return
+	}
+
+	if DrawCheck(g) {
+		g.TourJoueur = fmt.Sprintf("Match nul")
+		g.Debut = false
+		return
+	}
+
 	// Alterne le joueur
 	if g.Tour == 1 {
 		g.Tour = 2
@@ -73,24 +100,28 @@ func Tour_joueur(g *GameData, r *http.Request) {
 	}
 }
 
-func IsWinPlayer1(g *GameData) {
-	nb_colonnes := 7
-	nb_lignes := 6
-	var x int
-	var y int
-	x = g.Position[0].Col
-	y = g.Position[0].Ligne
+func WinCheck(g *GameData, player int) bool {
+
+	nb_colonnes_min := 1
+	nb_colonnes_max := 7
+	nb_lignes_min := 1
+	nb_lignes_max := 6
+
+	x := g.Position[0].Col
+	y := g.Position[0].Ligne
+
 	// Horizontal
 	compteurHorizontal := 0
 	for i := -3; i <= 3; i++ {
-		if x+i >= 0 && x+i < nb_colonnes { // reste dans la grille
-			if g.Tableau[y][x+i] == 1 { // pion du joueur
+		col_act := x + i
+		if col_act >= nb_colonnes_min && col_act <= nb_colonnes_max { // reste dans la grille
+			if g.Tableau[y][col_act] == player { // pion du joueur
 				compteurHorizontal++
 			} else {
 				compteurHorizontal = 0
 			}
 			if compteurHorizontal >= 4 {
-				fmt.Print("Victoire horizontal")
+				return true
 			}
 		}
 	}
@@ -98,14 +129,15 @@ func IsWinPlayer1(g *GameData) {
 	// Vertical
 	compteurVertical := 0
 	for i := -3; i <= 3; i++ {
-		if y+i >= 0 && y+i < nb_lignes {
-			if g.Tableau[y+i][x] == 1 {
+		ligne_act := y + i
+		if ligne_act >= nb_lignes_min && ligne_act <= nb_lignes_max {
+			if g.Tableau[ligne_act][x] == player {
 				compteurVertical++
 			} else {
 				compteurVertical = 0
 			}
 			if compteurVertical >= 4 {
-				fmt.Print("Victoire vertical")
+				return true
 			}
 		}
 	}
@@ -113,14 +145,16 @@ func IsWinPlayer1(g *GameData) {
 	// Diagonale /
 	compteurDiag1 := 0
 	for i := -3; i <= 3; i++ {
-		if x+i >= 0 && x+i < nb_colonnes && y-i >= 0 && y-i < nb_lignes {
-			if g.Tableau[y-i][x+i] == 1 {
+		col_act := x + i
+		ligne_act := y - i
+		if col_act >= nb_colonnes_min && col_act <= nb_colonnes_max && ligne_act >= nb_lignes_min && ligne_act <= nb_lignes_max {
+			if g.Tableau[ligne_act][col_act] == player {
 				compteurDiag1++
 			} else {
 				compteurDiag1 = 0
 			}
 			if compteurDiag1 >= 4 {
-				fmt.Print("Victoire diagonale en haut/bas droit")
+				return true
 			}
 		}
 	}
@@ -128,15 +162,29 @@ func IsWinPlayer1(g *GameData) {
 	// Diagonale \
 	compteurDiag2 := 0
 	for i := -3; i <= 3; i++ {
-		if x+i >= 0 && x+i < nb_colonnes && y+i >= 0 && y+i < nb_lignes {
-			if g.Tableau[y+i][x+i] == 1 {
+		col_act := x + i
+		ligne_act := y + i
+		if col_act >= nb_colonnes_min && col_act <= nb_colonnes_max && ligne_act >= nb_lignes_min && ligne_act <= nb_lignes_max {
+			if g.Tableau[ligne_act][col_act] == player {
 				compteurDiag2++
 			} else {
 				compteurDiag2 = 0
 			}
 			if compteurDiag2 >= 4 {
-				fmt.Print("Victoire diagonale en haut/bas gauche")
+				return true
 			}
 		}
 	}
+	return false
+}
+
+func DrawCheck(g *GameData) bool {
+	for ligne := 1; ligne <= 6; ligne++ {
+		for colonne := 1; colonne <= 7; colonne++ {
+			if g.Tableau[ligne][colonne] == 0 {
+				return false
+			}
+		}
+	}
+	return true
 }
