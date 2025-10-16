@@ -1,7 +1,6 @@
 package game
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -82,16 +81,22 @@ func Tour_joueur(g *GameData, r *http.Request) {
 		}
 	}
 
-	player := g.TourJoueur
-
-	if WinCheck(g, player) { // Check si le joueur a gagné
-		g.Win = fmt.Sprintf("Joueur numéro %d gagne", player)
+	if WinCheck(g, g.TourJoueur) { // Check si le joueur a gagné
+		var player string
+		if g.TourJoueur == 1 {
+			player = g.J1
+		} else {
+			player = g.J2
+		}
+		g.Win = player
+		log.Printf("Le joueur %s gagne", player)
 		g.Debut = false
 		return
 	}
 
-	if DrawCheck(g) {
+	if g.NbTour == 43 { //Verif match nul si tour == 43
 		g.Win = "Match nul"
+		log.Println("Match nul")
 		g.Debut = false
 		return
 	}

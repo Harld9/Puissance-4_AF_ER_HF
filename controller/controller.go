@@ -76,7 +76,7 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 		} else {
 			game.Tour_joueur(G, r)
 		}
-		http.Redirect(w, r, "/jeu", http.StatusSeeOther) // Redirection après POST
+		http.Redirect(w, r, "/jeu", http.StatusSeeOther) // Redirection après POST, un return
 
 		return
 	}
