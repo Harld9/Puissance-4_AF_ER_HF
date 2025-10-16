@@ -139,6 +139,7 @@ form {
   text-align: center;
   justify-content: center;
   font-size: 10px;
+  display: flex;
 }
 
 .ligne_uno {
