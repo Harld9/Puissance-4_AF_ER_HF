@@ -7,14 +7,15 @@ import (
 )
 
 type JoueurStats struct {
-    Victoires     int `json:"victoires"`
-    Defaites      int `json:"defaites"`
-    PartiesJouees int `json:"parties_jouees"`
+	Victoires     int `json:"victoires"`
+	Defaites      int `json:"defaites"`
+	PartiesJouees int `json:"parties_jouees"`
 }
 
-type Data struct{
-    Joueurs      map[string]JoueurStats `json:"joueurs"`
-    TotalParties int                    `json:"total_parties"`
+type Data struct {
+	Joueurs      map[string]JoueurStats `json:"joueurs"`
+	TotalParties int                    `json:"total_parties"`
+}
 
 type Position struct {
 	Ligne int
