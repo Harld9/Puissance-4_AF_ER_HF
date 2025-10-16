@@ -31,7 +31,7 @@ type GameData struct {
 	NbTour     int
 	TourJoueur int
 	Winnner    string
-	IsWin      bool
+	GameEnd    bool
 }
 
 func InitGame() *GameData {
@@ -60,7 +60,7 @@ func InitGame() *GameData {
 		NbTour:     1,
 		TourJoueur: 1, //1 == J1; 2 == J2
 		Winnner:    "",
-		IsWin:      false,
+		GameEnd:    false,
 	}
 }
 
@@ -74,7 +74,7 @@ func Nomdesjoueurs(g *GameData) string {
 
 func Tour_joueur(g *GameData, r *http.Request) {
 
-	if g.Debut == false {
+	if !g.Debut {
 		log.Println("La partie n'est pas en cours.")
 		return
 	}
@@ -111,13 +111,14 @@ func Tour_joueur(g *GameData, r *http.Request) {
 		}
 		g.Winnner = "Victoire de " + player
 		log.Printf("Le joueur %s gagne", player)
-		g.IsWin = true
+		g.GameEnd = true
 		return
 	}
 
 	if g.NbTour == 43 { //Verif match nul si tour == 43
 		g.Winnner = "Match nul"
 		log.Println("Match nul")
+		g.GameEnd = true
 		return
 	}
 
