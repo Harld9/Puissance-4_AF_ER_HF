@@ -18,6 +18,7 @@ type PageData struct {
 	Tableau [8][9]int
 	Player1 string
 	Player2 string
+	NbTour  int
 	EnCours bool
 }
 
@@ -72,9 +73,11 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 			G.J1 = player1
 			G.J2 = player2
 			G.Debut = true
+		} else {
+			game.Tour_joueur(G, r)
 		}
-		game.Tour_joueur(G, r)
 		http.Redirect(w, r, "/jeu", http.StatusSeeOther) // Redirection après POST
+
 		return
 	}
 
@@ -93,6 +96,7 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 		Tableau: G.Tableau,
 		Player1: G.J1,
 		Player2: G.J2,
+		NbTour:  G.NbTour,
 		EnCours: G.Debut,
 	}
 	tmpl := template.Must(template.ParseFiles("template/jeu.html"))

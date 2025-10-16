@@ -18,8 +18,9 @@ type GameData struct {
 	Tableau    [8][9]int
 	Position   [1]Position
 	Debut      bool
-	Tour       int
-	TourJoueur string
+	NbTour     int
+	TourJoueur int
+	Win        string
 }
 
 func InitGame() *GameData {
@@ -44,8 +45,10 @@ func InitGame() *GameData {
 		Position: [1]Position{
 			{Ligne: 0, Col: 0},
 		},
-		Debut: false,
-		Tour:  1,
+		Debut:      false,
+		NbTour:     1,
+		TourJoueur: 1, //1 == J1; 2 == J2
+		Win:        "",
 	}
 }
 
@@ -71,32 +74,33 @@ func Tour_joueur(g *GameData, r *http.Request) {
 
 	for ligne := 6; ligne >= 1; ligne-- {
 		if g.Tableau[ligne][col] == 0 {
-			g.Tableau[ligne][col] = g.Tour
+			g.Tableau[ligne][col] = g.TourJoueur
 			g.Position[0].Col = col
 			g.Position[0].Ligne = ligne
+			g.NbTour++
 			break
 		}
 	}
 
-	player := g.Tour
+	player := g.TourJoueur
 
 	if WinCheck(g, player) { // Check si le joueur a gagné
-		g.TourJoueur = fmt.Sprintf("Joueur numéro %d gagne", player)
+		g.Win = fmt.Sprintf("Joueur numéro %d gagne", player)
 		g.Debut = false
 		return
 	}
 
 	if DrawCheck(g) {
-		g.TourJoueur = fmt.Sprintf("Match nul")
+		g.Win = "Match nul"
 		g.Debut = false
 		return
 	}
 
 	// Alterne le joueur
-	if g.Tour == 1 {
-		g.Tour = 2
+	if g.TourJoueur == 1 {
+		g.TourJoueur = 2
 	} else {
-		g.Tour = 1
+		g.TourJoueur = 1
 	}
 }
 
