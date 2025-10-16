@@ -1,187 +1,180 @@
 /* Reset & base */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f6f6f6;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-family: Arial, sans-serif;
+  background-color: #f6f6f6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Navbar */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-    z-index: 100;
-    background: #FFD700;
-    background: linear-gradient(90deg, rgba(255, 77, 77, 1) 0%, rgba(255, 215, 0, 1) 100%);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  z-index: 100;
+  background: #ffd700;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 77, 77, 1) 0%,
+    rgba(255, 215, 0, 1) 100%
+  );
+  border-bottom: white solid 1px;
 }
 
 .nav-menu {
-    display: flex;
-    list-style: none;
-    gap: 20px;
+  display: flex;
+  list-style: none;
+  gap: 20px;
 }
 
 .nav-menu li {
-    text-transform: uppercase;
-    font-weight: bold;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .nav-links {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 18px;
-    border-radius: 8px;
-    border-bottom: 3px solid transparent;
-    transition: all 0.3s ease;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s ease;
 }
 
 .nav-links:hover {
-    background-color: #FFD700;
-    color: #1976d2;
-    border-bottom: 3px solid #FFD700;
-    transform: scale(1.08);
+  background-color: #ffd700;
+  color: #1976d2;
+  border-bottom: 3px solid #ffd700;
+  transform: scale(1.08);
 }
 
 /* Container pour contenu centré */
 .container {
-    flex: 1;
-    /* prend tout l’espace restant */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* laisse l’espace pour la navbar */
+  flex: 1;
+  /* prend tout l’espace restant */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* laisse l’espace pour la navbar */
 }
 
 /* Tableau du jeu */
 table {
-    border-collapse: separate;
-    border-spacing: 6px;
-    /* espace entre les cellules */
-    background-color: #1565c0;
-    padding: 10px;
-    border-radius: 12px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  border-collapse: separate;
+  border-spacing: 6px;
+  /* espace entre les cellules */
+  background-color: #1565c0;
+  padding: 10px;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
 }
 
 /* Toutes les Cellules */
 td {
-    width: 60px;
-    height: 60px;
-    text-align: center;
-    vertical-align: center;
-    font-size: 32px;
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-    background-color: #ffffff;
-    border: 2px dashed #1976d2;
-    /* Modifie l'apparence du cercle de puissance 4) */
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  vertical-align: center;
+  font-size: 32px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  background-color: #ffffff;
+  border: 2px dashed #1976d2;
+  /* Modifie l'apparence du cercle de puissance 4) */
 }
 
 /* Couleurs des pions */
 .pion-rouge {
-    background-color: #ff4d4d;
+  background-color: #ff4d4d;
 }
 
 .pion-jaune {
-    background-color: #ffd700;
+  background-color: #ffd700;
 }
 
 /* Texte centré */
 p {
-    text-align: center;
-    margin: 20px;
-    max-width: 300px;
-    padding: 10px 0;
-    margin-top: 10px;
+  text-align: center;
+  margin: 20px;
+  max-width: 300px;
+  padding: 10px 0;
+  margin-top: 10px;
 }
 
 h1 {
-    text-align: center;
-    margin: 20px;
-    padding: 10px 0;
-    margin-top: 100px;
+  text-align: center;
+  margin: 20px;
+  padding: 10px 0;
+  margin-top: 100px;
 }
 
 h2 {
-    text-align: center;
-    margin-top: 100px;
-    margin-bottom: 10px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 form {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    font-size: 10px;
+  text-align: center;
+  justify-content: center;
+  font-size: 10px;
 }
 
 .ligne_uno {
-    width: 60px;
-    height: 60px;
-    text-align: center;
-    vertical-align: middle;
-    font-size: 32px;
-    border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-    background-color: #30ff5d;
-    border: 2px dashed #1976d2;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 32px;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  background-color: #30ff5d;
+  border: 2px dashed #1976d2;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .ligne_uno:hover {
-    background-color: #fff;
-    transform: scale(1.05);
+  background-color: #fff;
+  transform: scale(1.05);
 }
 
 .input {
-    margin: 0 10px;
-    padding: 8px;
-    border: 1px solid #ccc;
+  margin: 0 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
 }
 
-.Formulaire {
-    background-color: antiquewhite;
-    border: solid rgb(192, 192, 192) 0.5px;
-    height: 200px;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    display: flex;
-}
+
 
 .Boutonsubmit {
-    background: dodgerblue;
-    border-radius: 6px;
-    transition: all .3s cubic-bezier(0.67, 0.17, 0.40, 0.83);
-    border: none;
-    width: 200px;
+  background: dodgerblue;
+  border-radius: 6px;
+  transition: all 0.3s cubic-bezier(0.67, 0.17, 0.4, 0.83);
+  border: none;
+  width: 200px;
 }
 
 .Boutonsubmit:hover {
-    background-color: #fff;
-    transform: scale(1.05);
+  background-color: #fff;
+  transform: scale(1.05);
 }
 
 label {
-
-    font-size: 15px;
+  font-size: 15px;
 }
+
