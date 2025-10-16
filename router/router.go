@@ -11,7 +11,7 @@ func New() *http.ServeMux {
 
 	// Routes de ton app
 	mux.HandleFunc("/", controller.Home)
-	mux.HandleFunc("/about", controller.About)
+	mux.HandleFunc("/leaderboard", controller.Leaderboard)
 	mux.HandleFunc("/contact", controller.Contact)
 	mux.HandleFunc("/jeu", controller.Jeu)
 

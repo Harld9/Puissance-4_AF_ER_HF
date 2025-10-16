@@ -32,12 +32,12 @@ func Home(w http.ResponseWriter, r *http.Request) {
 	tmpl.Execute(w, data)
 }
 
-func About(w http.ResponseWriter, r *http.Request) {
+func Leaderboard(w http.ResponseWriter, r *http.Request) {
 	data := PageData{
 		Title:   "À propos",
 		Message: "Ceci est la page À propos ✨",
 	}
-	tmpl := template.Must(template.ParseFiles("template/about.html"))
+	tmpl := template.Must(template.ParseFiles("template/leaderboard.html"))
 	tmpl.Execute(w, data)
 }
 
