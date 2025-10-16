@@ -206,3 +206,18 @@ func DrawCheck(g *GameData) bool {
 	}
 	return true
 }
+
+/*func History(){
+
+
+
+
+
+
+}
+
+func Leaderboard() int{
+
+
+
+}*/
