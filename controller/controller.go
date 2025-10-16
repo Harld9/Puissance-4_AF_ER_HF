@@ -21,7 +21,7 @@ type PageData struct {
 	NbTour        int
 	EnCours       bool
 	JoueurCourant string
-	IsWin         bool
+	GameEnd       bool
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -69,6 +69,12 @@ var G *game.GameData = game.InitGame()
 
 func Jeu(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodPost {
+		if r.FormValue("reset") == "1" {
+			G = game.InitGame()
+			G.Debut = false
+			http.Redirect(w, r, "/jeu", http.StatusSeeOther) // Redirection après POST, un return
+			return
+		}
 		player1 := r.FormValue("player1")
 		player2 := r.FormValue("player2")
 		if player1 != "" && player2 != "" {
@@ -86,12 +92,10 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 					Player2: G.J2,
 					NbTour:  G.NbTour,
 					EnCours: G.Debut,
-					IsWin:   G.IsWin,
+					GameEnd: G.GameEnd,
 				}
 				tmpl := template.Must(template.ParseFiles("template/jeu.html"))
 				tmpl.Execute(w, data)
-				G = game.InitGame()
-				G.Debut = false
 			}
 		}
 		http.Redirect(w, r, "/jeu", http.StatusSeeOther) // Redirection après POST, un return
@@ -117,7 +121,7 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 		NbTour:        G.NbTour,
 		EnCours:       G.Debut,
 		JoueurCourant: game.Nomdesjoueurs(G),
-		IsWin:         G.IsWin,
+		GameEnd:       G.GameEnd,
 	}
 	tmpl := template.Must(template.ParseFiles("template/jeu.html"))
 	tmpl.Execute(w, data)
