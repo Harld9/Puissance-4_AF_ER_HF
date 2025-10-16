@@ -75,6 +75,20 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 			G.Debut = true
 		} else {
 			game.Tour_joueur(G, r)
+			if G.Win != "" {
+				data := PageData{
+					Title:   "Fin de partie",
+					Message: G.Win,
+					Tableau: G.Tableau,
+					Player1: G.J1,
+					Player2: G.J2,
+					NbTour:  G.NbTour,
+					EnCours: G.Debut,
+				}
+				tmpl := template.Must(template.ParseFiles("template/jeu.html"))
+				tmpl.Execute(w, data)
+				G = game.InitGame()
+			}
 		}
 		http.Redirect(w, r, "/jeu", http.StatusSeeOther) // Redirection après POST, un return
 

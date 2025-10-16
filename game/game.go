@@ -88,7 +88,7 @@ func Tour_joueur(g *GameData, r *http.Request) {
 		} else {
 			player = g.J2
 		}
-		g.Win = player
+		g.Win = "Victoire de " + player
 		log.Printf("Le joueur %s gagne", player)
 		g.Debut = false
 		return
