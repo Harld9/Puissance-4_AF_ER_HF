@@ -13,13 +13,14 @@ func renderTemplate(w http.ResponseWriter, filename string, data map[string]stri
 }
 
 type PageData struct {
-	Title   string
-	Message string
-	Tableau [8][9]int
-	Player1 string
-	Player2 string
-	NbTour  int
-	EnCours bool
+	Title         string
+	Message       string
+	Tableau       [8][9]int
+	Player1       string
+	Player2       string
+	NbTour        int
+	EnCours       bool
+	JoueurCourant string
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -91,13 +92,14 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := PageData{
-		Title:   title,
-		Message: message,
-		Tableau: G.Tableau,
-		Player1: G.J1,
-		Player2: G.J2,
-		NbTour:  G.NbTour,
-		EnCours: G.Debut,
+		Title:         title,
+		Message:       message,
+		Tableau:       G.Tableau,
+		Player1:       G.J1,
+		Player2:       G.J2,
+		NbTour:        G.NbTour,
+		EnCours:       G.Debut,
+		JoueurCourant: game.Nomdesjoueurs(G),
 	}
 	tmpl := template.Must(template.ParseFiles("template/jeu.html"))
 	tmpl.Execute(w, data)

@@ -51,6 +51,14 @@ func InitGame() *GameData {
 	}
 }
 
+func Nomdesjoueurs(g *GameData) string {
+	if g.TourJoueur == 1 {
+		return g.J1 + " (rouge) 🔴"
+	} else {
+		return g.J2 + " (jaune) 🟡"
+	}
+}
+
 func Tour_joueur(g *GameData, r *http.Request) {
 
 	if g.Debut == false {
