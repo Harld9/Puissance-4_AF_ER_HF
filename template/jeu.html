@@ -26,6 +26,7 @@
         </form>
     </div>
     {{end}}
+    {{if .EnCours}}
     <h2>{{.Player1}} VS {{.Player2}} — Que le meilleur gagne !<br>Tour {{.NbTour}}</h2>
      <p>Au tour de : {{.JoueurCourant}}</p>
     <!-- Ici tu peux afficher le plateau -->
@@ -97,6 +98,7 @@
                 {{end}} <!-- } (fermeture d’un bloc)-->
                 {{end}}
             </tr>
+            {{end}}
             {{end}}
             {{end}}
         </table>
