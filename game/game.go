@@ -218,4 +218,4 @@ func DrawCheck(g *GameData) bool {
 	return true
 }
 
-func Leaderboard()
+/*func Leaderboard()*/
