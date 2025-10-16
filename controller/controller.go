@@ -21,6 +21,7 @@ type PageData struct {
 	NbTour        int
 	EnCours       bool
 	JoueurCourant string
+	IsWin         bool
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -76,19 +77,21 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 			G.Debut = true
 		} else {
 			game.Tour_joueur(G, r)
-			if G.Win != "" {
+			if G.Winnner != "" {
 				data := PageData{
 					Title:   "Fin de partie",
-					Message: G.Win,
+					Message: G.Winnner,
 					Tableau: G.Tableau,
 					Player1: G.J1,
 					Player2: G.J2,
 					NbTour:  G.NbTour,
 					EnCours: G.Debut,
+					IsWin:   G.IsWin,
 				}
 				tmpl := template.Must(template.ParseFiles("template/jeu.html"))
 				tmpl.Execute(w, data)
 				G = game.InitGame()
+				G.Debut = false
 			}
 		}
 		http.Redirect(w, r, "/jeu", http.StatusSeeOther) // Redirection après POST, un return
@@ -114,6 +117,7 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 		NbTour:        G.NbTour,
 		EnCours:       G.Debut,
 		JoueurCourant: game.Nomdesjoueurs(G),
+		IsWin:         G.IsWin,
 	}
 	tmpl := template.Must(template.ParseFiles("template/jeu.html"))
 	tmpl.Execute(w, data)
