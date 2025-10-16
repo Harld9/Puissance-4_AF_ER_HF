@@ -105,11 +105,10 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 
 	var title, message string
 	if !G.Debut {
-		title = "Bienvenue sur Puissance 4"
+		title = "Bienvenue sur le Puissance 4"
 		message = "Entrez les noms des joueurs pour commencer la partie"
 	} else {
-		title = "Battle de Cerveaux"
-		message = "Partie en cours !"
+		title = "Partie en cours !"
 	}
 
 	data := PageData{
