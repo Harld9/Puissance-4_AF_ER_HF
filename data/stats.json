@@ -1,4 +1,10 @@
-{
-  "joueurs": {},
-  "total_parties": 0
-}
+[
+  {
+    "nom": "Florian",
+    "victoire": 1
+  },
+  {
+    "nom": "Harold",
+    "victoire": 1
+  }
+]

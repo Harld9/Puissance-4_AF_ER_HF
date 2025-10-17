@@ -3,6 +3,7 @@ package controller
 import (
 	"html/template"
 	"net/http"
+	"power4/game"
 )
 
 // renderTemplate est une fonction utilitaire pour afficher un template HTML avec des données dynamiques
@@ -11,22 +12,34 @@ func renderTemplate(w http.ResponseWriter, filename string, data map[string]stri
 	tmpl.Execute(w, data)                                              // Exécute le template et écrit le résultat dans la réponse HTTP
 }
 
-// Home gère la page d'accueil
-func Home(w http.ResponseWriter, r *http.Request) {
-	data := map[string]string{
-		"Title":   "Accueil",               // Titre de la page
-		"Message": "Bienvenue chez Ynov 🎉", // Message affiché dans le template
-	}
-	renderTemplate(w, "index.html", data) // Affiche le template index.html avec les données
+type PageData struct {
+	Title         string
+	Message       string
+	Tableau       [8][9]int
+	Player1       string
+	Player2       string
+	NbTour        int
+	EnCours       bool
+	JoueurCourant string
+	GameEnd       bool
 }
 
-// About gère la page "À propos"
-func About(w http.ResponseWriter, r *http.Request) {
-	data := map[string]string{
-		"Title":   "À propos",
-		"Message": "Ceci est la page À propos ✨",
+func Home(w http.ResponseWriter, r *http.Request) {
+	data := PageData{
+		Title:   "Accueil",
+		Message: "Bienvenue Au Jeu Puissance 4 🎉",
 	}
-	renderTemplate(w, "about.html", data) // Affiche le template about.html avec les données
+	tmpl := template.Must(template.ParseFiles("template/index.html"))
+	tmpl.Execute(w, data)
+}
+
+func Leaderboard(w http.ResponseWriter, r *http.Request) {
+	data := PageData{
+		Title:   "À propos",
+		Message: "Ceci est la page À propos ✨",
+	}
+	tmpl := template.Must(template.ParseFiles("template/leaderboard.html"))
+	tmpl.Execute(w, data)
 }
 
 // Contact gère la page de contact
@@ -52,77 +65,63 @@ func Contact(w http.ResponseWriter, r *http.Request) {
 	renderTemplate(w, "contact.html", data)
 }
 
-/*
-func IsWin(){
-	zqz
-	compteur := 0
-	for {
-		//Check à droite
-		for i := 0; i < 4; i++ {
-			if pion at x+i y == 1 {
-				compteur++
-			} else {
-			break
+var G *game.GameData = game.InitGame()
+
+func Jeu(w http.ResponseWriter, r *http.Request) {
+	if r.Method == http.MethodPost {
+		if r.FormValue("reset") == "1" {
+			G = game.InitGame()
+			G.Debut = false
+			http.Redirect(w, r, "/jeu", http.StatusSeeOther) // Redirection après POST, un return
+			return
+		}
+		player1 := r.FormValue("player1")
+		player2 := r.FormValue("player2")
+		if player1 != "" && player2 != "" {
+			G.J1 = player1
+			G.J2 = player2
+			G.Debut = true
+		} else {
+			game.Tour_joueur(G, r)
+			if G.Winnner != "" {
+				data := PageData{
+					Title:   "Fin de partie",
+					Message: G.Winnner,
+					Tableau: G.Tableau,
+					Player1: G.J1,
+					Player2: G.J2,
+					NbTour:  G.NbTour,
+					EnCours: G.Debut,
+					GameEnd: G.GameEnd,
+				}
+				tmpl := template.Must(template.ParseFiles("template/jeu.html"))
+				tmpl.Execute(w, data)
 			}
 		}
-		//Check à gauche
-		for i := 0; i < 4; i++ {
-			if pion at x-i y == 1 {
-				compteur++
-			} else {
-			break
-			}
-		}
-		//Check en haut
-		for i := 0; i < 4; i++ {
-    		if pion at x y+i == 1 {
-    			compteur++
-    		} else {
-   	    	break
-    		}
-		}
-		//Check en bas
-		for i := 0; i < 4; i++ {
- 		   if pion at x y-i == 1 {
-  		    	compteur++
-		    } else {
-	        break
-		    }
-		}
-    	//check en diagonalesupérieur droite
-		for i := 0; i < 4; i++ {
-		    if pion at x+i y+i == 1 {
-				compteur++
-	    	} else {
-	        break
-	    	}
-		}
-    	//check en diagonale supérieur gauche
-		for i := 0; i < 4; i++ {
-		    if pion at x-i y+i == 1 {
-	 	       compteur++
-		    } else {
-	        break
-		    }
-		}
-		//check en diagonale inferieure gauche
-		for i := 0; i < 4; i++ {
-		    if pion at x-i y-i == 1 {
-		        compteur++
-		    } else {
-		    break
-		    }
-		}
-		//check en diagonale inferieure droite
-		for i := 0; i < 4; i++ {
-		    if pion at x+i y-i == 1 {
-		        compteur++
-		    } else {
-		    break
-		    }
-		}
-		if compteur = 4 {
-			return true
-		}
+		http.Redirect(w, r, "/jeu", http.StatusSeeOther) // Redirection après POST, un return
+
+		return
 	}
-} */
+
+	var title, message string
+	if !G.Debut {
+		title = "Bienvenue sur le Puissance 4"
+		message = "Entrez les noms des joueurs pour commencer la partie"
+	} else {
+		title = "Partie en cours !"
+	}
+
+	data := PageData{
+		Title:         title,
+		Message:       message,
+		Tableau:       G.Tableau,
+		Player1:       G.J1,
+		Player2:       G.J2,
+		NbTour:        G.NbTour,
+		EnCours:       G.Debut,
+		JoueurCourant: game.Nomdesjoueurs(G),
+		GameEnd:       G.GameEnd,
+	}
+	tmpl := template.Must(template.ParseFiles("template/jeu.html"))
+	tmpl.Execute(w, data)
+}

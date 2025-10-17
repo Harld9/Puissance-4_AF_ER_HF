@@ -195,6 +195,42 @@ label {
   font-size: 15px;
 }
 
+.classement{
+  justify-content: space-between;
+  display: flex;
 
+
+
+}
+
+.winleaderboard{
+
+    width: 301px;
+    height: 500px;
+    border: #ff00c8 solid 3px;
+    border-radius: 10px;
+    margin: 100px;
+    background-color: #ff7ae2;
+}
+
+.history{
+
+    width: 301px;
+    height: 500px;
+    border: #00ff37 solid 3px;
+    border-radius: 10px;
+    margin: 100px;
+    background-color: #78fe95;
+}
+
+.turnleaderboard{
+
+    width: 301px;
+    height: 500px;
+    border: #d67010 solid 3px;
+    border-radius: 10px;
+    margin: 100px;
+    background-color: #ffbc7e;
+}
 
 
