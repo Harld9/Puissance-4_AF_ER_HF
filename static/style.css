@@ -74,6 +74,18 @@ body {
   /* laisse l’espace pour la navbar */
 }
 
+.image1 {
+  display: block;
+  margin: auto auto;    /* centre horizontalement */
+  width: 300px;         /* largeur fixe ou max-width selon besoin */
+  height: 300px;        /* hauteur fixe pour recadrer */
+  object-fit: cover;    /* recadre sans déformer */
+  border-radius: 12px;  /* arrondir si tu veux */
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  align-items: center;
+  padding: 0;           /* supprime padding qui agrandit la boîte */
+}
 /* Tableau du jeu */
 table {
   border-collapse: separate;
@@ -182,4 +194,7 @@ form {
 label {
   font-size: 15px;
 }
+
+
+
 

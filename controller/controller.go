@@ -27,7 +27,7 @@ type PageData struct {
 func Home(w http.ResponseWriter, r *http.Request) {
 	data := PageData{
 		Title:   "Accueil",
-		Message: "Bienvenue Au Puissance 4 🎉",
+		Message: "Bienvenue Au Jeu Puissance 4 🎉",
 	}
 	tmpl := template.Must(template.ParseFiles("template/index.html"))
 	tmpl.Execute(w, data)
