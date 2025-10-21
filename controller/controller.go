@@ -88,9 +88,6 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 					Title:   "Fin de partie",
 					Message: G.Winnner,
 					Tableau: G.Tableau,
-					Player1: G.J1,
-					Player2: G.J2,
-					NbTour:  G.NbTour,
 					EnCours: G.Debut,
 					GameEnd: G.GameEnd,
 				}
@@ -107,6 +104,9 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 	if !G.Debut {
 		title = "Bienvenue sur le Puissance 4"
 		message = "Entrez les noms des joueurs pour commencer la partie"
+	} else if G.Winnner != "" {
+		title = "Fin de partie"
+		message = G.Winnner
 	} else {
 		title = "Partie en cours !"
 	}

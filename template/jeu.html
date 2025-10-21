@@ -23,7 +23,6 @@
         <button type="submit" class="Boutonsubmit">Réinitialisation du jeu</button>
         </form>
     {{end}}
-    {{if not .GameEnd}}
         {{if not .EnCours}}
         <p><img class="image1" src="../static/P5H.png" alt="Image de Puissance 4"></p>
            <div class="Formulaire">
@@ -35,8 +34,10 @@
             </div>
         {{end}}
         {{if .EnCours}}
+            {{if not .GameEnd}}
             <h2>{{.Player1}} VS {{.Player2}} — Que le meilleur gagne !<br>Tour {{.NbTour}}</h2>
             <p>Au tour de : {{.JoueurCourant}}</p>
+            {{end}}
             <!-- Ici tu peux afficher le plateau -->
             <!-- Tableau affichant la grille jouable (ignorer les murs) -->
             <div class="container">
@@ -60,18 +61,25 @@
                                 <!--for j, cell := range ligne-->
                                     {{if and (gt $j 0) (lt $j 8)}} <!-- ignore colonne 0 et 8 (murs) -->
                                     <!--if j > 0 && j < 8-->
-                                        <td {{if eq $cell 0}} class="case-vide" {{end}} {{if eq $cell 1}} class="pion-rouge" {{end}} {{if eq
-                                            $cell 2}} class="pion-jaune" {{end}}>
-                                        
+                                        <td class="
+                                        {{if eq $cell 0}}case-vide{{end}}
+                                        {{if eq $cell 1}}pion-rouge{{end}}
+                                        {{if eq $cell 2}}pion-jaune{{end}}
+                                        {{if eq $cell 3}}pion-rouge-gagnant{{end}}
+                                        {{if eq $cell 4}}pion-jaune-gagnant{{end}}">
                                             {{if and (eq $i 1) (eq $cell 0)}}
-                                                <form method="post" action="/jeu">
-                                                    <input type="hidden" name="colonne" value="{{$j}}">
-                                                    <button type="submit" class="ligne_uno">⬇</button>
-                                                </form>
+                                                {{if not $.GameEnd}}
+                                                    <form method="post" action="/jeu">
+                                                        <input type="hidden" name="colonne" value="{{$j}}">
+                                                        <button type="submit" class="ligne_uno">⬇</button>
+                                                    </form>
+                                                {{end}}
                                             {{end}}
-                                            {{if eq $cell 0}} {{end}}
-                                            {{if eq $cell 1}} {{end}}
-                                            {{if eq $cell 2}} {{end}}
+                                            {{if eq $cell 0}}{{end}}
+                                            {{if eq $cell 1}}{{end}}
+                                            {{if eq $cell 2}}{{end}} 
+                                            {{if eq $cell 3}}{{end}} 
+                                            {{if eq $cell 4}}{{end}}
                                         </td> <!--
                                             if cell == 0 {
 	            	    		        	    fmt.Fprint(w, ` class="case-vide"`)
@@ -83,12 +91,6 @@
             	        			        	fmt.Fprint(w, ` class="pion-jaune"`)
     	            	        		    }
 	    	            	        	    fmt.Fprint(w, ">")
-
-                                            if cell == 1 {
-	            		    	            	fmt.Fprint(w, "🔴")
-		            	        	        }
-        			            	        if cell == 2 {
-	        			                    	fmt.Fprint(w, "🟡")
                                             }-->
                                     {{end}} <!-- } (fermeture d’un bloc)-->
                                 {{end}}
@@ -98,7 +100,6 @@
                 </table>
             </div>
         {{end}}
-    {{end}}
 </body>
 
 </html>

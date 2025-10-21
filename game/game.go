@@ -106,7 +106,7 @@ func Tour_joueur(g *GameData, r *http.Request) {
 		} else {
 			player = g.J2
 		}
-		g.Winnner = "Victoire de " + player
+		g.Winnner = "Victoire de " + player + " en " + strconv.Itoa(g.NbTour-1) + " tours !"
 		log.Printf("Le joueur %s gagne", player)
 		g.GameEnd = true
 		if err := WinLeaderboard(player); err != nil {
@@ -140,17 +140,41 @@ func WinCheck(g *GameData, player int) bool {
 	x := g.Position[0].Col
 	y := g.Position[0].Ligne
 
+	var piongagnant1 [2]int
+	var piongagnant2 [2]int
+	var piongagnant3 [2]int
+	var piongagnant4 [2]int
+
 	// Horizontal
 	compteurHorizontal := 0
 	for i := -3; i <= 3; i++ {
 		col_act := x + i
 		if col_act >= nb_colonnes_min && col_act <= nb_colonnes_max { // reste dans la grille
 			if g.Tableau[y][col_act] == player { // pion du joueur
+				switch compteurHorizontal {
+				case 0:
+					piongagnant1[0] = col_act
+					piongagnant1[1] = y
+				case 1:
+					piongagnant2[0] = col_act
+					piongagnant2[1] = y
+				case 2:
+					piongagnant3[0] = col_act
+					piongagnant3[1] = y
+				case 3:
+					piongagnant4[0] = col_act
+					piongagnant4[1] = y
+				}
 				compteurHorizontal++
 			} else {
 				compteurHorizontal = 0
 			}
 			if compteurHorizontal >= 4 {
+				// Marquer les pions gagnants
+				g.Tableau[piongagnant1[1]][piongagnant1[0]] = player + 2
+				g.Tableau[piongagnant2[1]][piongagnant2[0]] = player + 2
+				g.Tableau[piongagnant3[1]][piongagnant3[0]] = player + 2
+				g.Tableau[piongagnant4[1]][piongagnant4[0]] = player + 2
 				return true
 			}
 		}
@@ -162,11 +186,29 @@ func WinCheck(g *GameData, player int) bool {
 		ligne_act := y + i
 		if ligne_act >= nb_lignes_min && ligne_act <= nb_lignes_max {
 			if g.Tableau[ligne_act][x] == player {
+				switch compteurVertical {
+				case 0:
+					piongagnant1[0] = x
+					piongagnant1[1] = ligne_act
+				case 1:
+					piongagnant2[0] = x
+					piongagnant2[1] = ligne_act
+				case 2:
+					piongagnant3[0] = x
+					piongagnant3[1] = ligne_act
+				case 3:
+					piongagnant4[0] = x
+					piongagnant4[1] = ligne_act
+				}
 				compteurVertical++
 			} else {
 				compteurVertical = 0
 			}
 			if compteurVertical >= 4 {
+				g.Tableau[piongagnant1[1]][piongagnant1[0]] = player + 2
+				g.Tableau[piongagnant2[1]][piongagnant2[0]] = player + 2
+				g.Tableau[piongagnant3[1]][piongagnant3[0]] = player + 2
+				g.Tableau[piongagnant4[1]][piongagnant4[0]] = player + 2
 				return true
 			}
 		}
@@ -179,11 +221,29 @@ func WinCheck(g *GameData, player int) bool {
 		ligne_act := y - i
 		if col_act >= nb_colonnes_min && col_act <= nb_colonnes_max && ligne_act >= nb_lignes_min && ligne_act <= nb_lignes_max {
 			if g.Tableau[ligne_act][col_act] == player {
+				switch compteurDiag1 {
+				case 0:
+					piongagnant1[0] = col_act
+					piongagnant1[1] = ligne_act
+				case 1:
+					piongagnant2[0] = col_act
+					piongagnant2[1] = ligne_act
+				case 2:
+					piongagnant3[0] = col_act
+					piongagnant3[1] = ligne_act
+				case 3:
+					piongagnant4[0] = col_act
+					piongagnant4[1] = ligne_act
+				}
 				compteurDiag1++
 			} else {
 				compteurDiag1 = 0
 			}
 			if compteurDiag1 >= 4 {
+				g.Tableau[piongagnant1[1]][piongagnant1[0]] = player + 2
+				g.Tableau[piongagnant2[1]][piongagnant2[0]] = player + 2
+				g.Tableau[piongagnant3[1]][piongagnant3[0]] = player + 2
+				g.Tableau[piongagnant4[1]][piongagnant4[0]] = player + 2
 				return true
 			}
 		}
@@ -196,11 +256,29 @@ func WinCheck(g *GameData, player int) bool {
 		ligne_act := y + i
 		if col_act >= nb_colonnes_min && col_act <= nb_colonnes_max && ligne_act >= nb_lignes_min && ligne_act <= nb_lignes_max {
 			if g.Tableau[ligne_act][col_act] == player {
+				switch compteurDiag2 {
+				case 0:
+					piongagnant1[0] = col_act
+					piongagnant1[1] = ligne_act
+				case 1:
+					piongagnant2[0] = col_act
+					piongagnant2[1] = ligne_act
+				case 2:
+					piongagnant3[0] = col_act
+					piongagnant3[1] = ligne_act
+				case 3:
+					piongagnant4[0] = col_act
+					piongagnant4[1] = ligne_act
+				}
 				compteurDiag2++
 			} else {
 				compteurDiag2 = 0
 			}
 			if compteurDiag2 >= 4 {
+				g.Tableau[piongagnant1[1]][piongagnant1[0]] = player + 2
+				g.Tableau[piongagnant2[1]][piongagnant2[0]] = player + 2
+				g.Tableau[piongagnant3[1]][piongagnant3[0]] = player + 2
+				g.Tableau[piongagnant4[1]][piongagnant4[0]] = player + 2
 				return true
 			}
 		}

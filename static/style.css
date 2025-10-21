@@ -125,6 +125,22 @@ td {
   background-repeat: no-repeat;
 }
 
+.pion-rouge-gagnant {
+  background-image: url("/static/Pion\ Rouge.png");
+  background-size: 130%;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 15px 5px #ff0000;
+}
+
+.pion-jaune-gagnant {
+  background-image: url("/static/Pion\ Jaune.png");
+  background-size: 130%;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: 0 0 15px 5px #ffeb3b;
+}
+
 /* Texte centré */
 p {
   text-align: center;
