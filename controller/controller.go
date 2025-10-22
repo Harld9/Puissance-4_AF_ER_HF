@@ -1,8 +1,10 @@
 package controller
 
 import (
+	"encoding/json"
 	"html/template"
 	"net/http"
+	"os"
 	"power4/game"
 )
 
@@ -22,6 +24,7 @@ type PageData struct {
 	EnCours       bool
 	JoueurCourant string
 	GameEnd       bool
+	Victoires     []game.JoueurVictoire
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -34,12 +37,36 @@ func Home(w http.ResponseWriter, r *http.Request) {
 }
 
 func Leaderboard(w http.ResponseWriter, r *http.Request) {
-	data := PageData{
-		Title:   "À propos",
-		Message: "Ceci est la page À propos ✨",
+	var joueurs []game.JoueurVictoire
+
+	data, err := os.ReadFile(game.Path)
+	if err != nil {
+		http.Error(w, "Impossible de lire les statistiques", http.StatusInternalServerError)
+		return
 	}
+	if len(data) > 0 {
+		if err := json.Unmarshal(data, &joueurs); err != nil {
+			http.Error(w, "Impossible de parser les statistiques", http.StatusInternalServerError) //Chat gpt m'a donné ça car on la fonction ne peut pas retourner erreur car pas dans son type de retour
+			return
+		}
+	}
+
+	for i := 0; i < len(joueurs); i++ {
+		for j := i + 1; j < len(joueurs); j++ {
+			if joueurs[j].Victoire > joueurs[i].Victoire {
+				joueurs[i], joueurs[j] = joueurs[j], joueurs[i]
+			}
+		}
+	}
+
+	dataPage := PageData{
+		Title:     "Leaderboard",
+		Message:   "Classement des joueurs 🏆",
+		Victoires: joueurs,
+	}
+
 	tmpl := template.Must(template.ParseFiles("template/leaderboard.html"))
-	tmpl.Execute(w, data)
+	tmpl.Execute(w, dataPage)
 }
 
 // Contact gère la page de contact

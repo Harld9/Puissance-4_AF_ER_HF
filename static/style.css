@@ -4,7 +4,7 @@
   padding: 0;
   box-sizing: border-box;
 }
- 
+
 body {
   font-family: Arial, sans-serif;
   background-color: #f6f6f6;
@@ -12,7 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  
+
 }
 
 /* Navbar */
@@ -29,11 +29,9 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
   z-index: 100;
   background: #ffd700;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 77, 77, 1) 0%,
-    rgba(255, 215, 0, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 77, 77, 1) 0%,
+      rgba(255, 215, 0, 1) 100%);
   border-bottom: white solid 1px;
 }
 
@@ -76,16 +74,23 @@ body {
 
 .image1 {
   display: block;
-  margin: auto auto;    /* centre horizontalement */
-  width: 300px;         /* largeur fixe ou max-width selon besoin */
-  height: 300px;        /* hauteur fixe pour recadrer */
-  object-fit: cover;    /* recadre sans déformer */
-  border-radius: 12px;  /* arrondir si tu veux */
+  margin: auto auto;
+  /* centre horizontalement */
+  width: 300px;
+  /* largeur fixe ou max-width selon besoin */
+  height: 300px;
+  /* hauteur fixe pour recadrer */
+  object-fit: cover;
+  /* recadre sans déformer */
+  border-radius: 12px;
+  /* arrondir si tu veux */
   overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   align-items: center;
-  padding: 0;           /* supprime padding qui agrandit la boîte */
+  padding: 0;
+  /* supprime padding qui agrandit la boîte */
 }
+
 /* Tableau du jeu */
 table {
   border-collapse: separate;
@@ -211,7 +216,7 @@ label {
   font-size: 15px;
 }
 
-.classement{
+.classement {
   justify-content: space-between;
   display: flex;
 
@@ -219,34 +224,37 @@ label {
 
 }
 
-.winleaderboard{
+.winleaderboard {
 
-    width: 301px;
-    height: 500px;
-    border: #ff00c8 solid 3px;
-    border-radius: 10px;
-    margin: 100px;
-    background-color: #ff7ae2;
+  width: 301px;
+  height: 500px;
+  border: #ff00c8 solid 3px;
+  border-radius: 10px;
+  margin: 100px;
+  background-color: #ff7ae2;
+  text-align: center;
+  font-size: 20px;
 }
 
-.history{
-
-    width: 301px;
-    height: 500px;
-    border: #00ff37 solid 3px;
-    border-radius: 10px;
-    margin: 100px;
-    background-color: #78fe95;
+.history {
+  width: 301px;
+  height: 500px;
+  border: #00ff37 solid 3px;
+  border-radius: 10px;
+  margin: 100px;
+  background-color: #78fe95;
 }
 
-.turnleaderboard{
+.turnleaderboard {
 
-    width: 301px;
-    height: 500px;
-    border: #d67010 solid 3px;
-    border-radius: 10px;
-    margin: 100px;
-    background-color: #ffbc7e;
+  width: 301px;
+  height: 500px;
+  border: #d67010 solid 3px;
+  border-radius: 10px;
+  margin: 100px;
+  background-color: #ffbc7e;
 }
 
-
+.nomjoueurs {
+  list-style: none;
+}

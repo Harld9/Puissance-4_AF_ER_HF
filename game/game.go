@@ -31,6 +31,8 @@ type GameData struct {
 	GameEnd    bool
 }
 
+const Path = "data/stats.json"
+
 func InitGame() *GameData {
 	return &GameData{
 		J1: "",
@@ -300,10 +302,10 @@ func DrawCheck(g *GameData) bool {
 func WinLeaderboard(nomGagnant string) error {
 	//déclare une slice de joueur pour stocker les scores
 	var joueurs []JoueurVictoire
-	path := "data/stats.json" //chemin du fichier json
+	//chemin du fichier json
 
 	//lecture du fichier json
-	data, err := os.ReadFile(path)
+	data, err := os.ReadFile(Path)
 	if err != nil { //si erreur lors de la lecture
 		return err //retourne erreur
 	}
@@ -339,7 +341,7 @@ func WinLeaderboard(nomGagnant string) error {
 	}
 
 	//ecrit les datas dans le fichier
-	if err := os.WriteFile(path, data, 0644); err != nil { //0644 permissions fichier
+	if err := os.WriteFile(Path, data, 0644); err != nil { //0644 permissions fichier
 		return err //retourne erreur si echec
 	}
 

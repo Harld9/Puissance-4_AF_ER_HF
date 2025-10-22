@@ -15,11 +15,28 @@
             <li><a href="/contact" class="nav-links">Contacts</a></li>
         </ul>
     </nav>
-   
+    <div class="classement">
+        <div class="winleaderboard">
+            <p class="pwinleaderboard"> <strong>🎖️ Classement 🎖️</strong></p>
+            <ul>
+                {{range .Victoires}}
+                <li class="nomjoueurs">{{.Nom}} : {{.Victoire}} victoires 🏆</li>
+                {{end}}
+            </ul>
 
 
-    
-    <p></p>
+        </div>
+        <div class="history">
+            <p class="phistory">
+                Historique de parties
+            </p>
+        </div>
+        <div class="turnleaderboard">
+            <p class="ptunrleaderboard">
+                Meilleur Joueur
+            </p>
+        </div>
+    </div>
 </body>
 
 </html>
