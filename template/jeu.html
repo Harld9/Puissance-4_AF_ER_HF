@@ -17,70 +17,74 @@
     </nav>
     <h1>{{ .Title }}</h1>
     <p>{{ .Message }}</p>
+
     {{if .GameEnd}}
-        <form method="post" action="/jeu">
+    <form method="post" action="/jeu">
         <input type="hidden" name="reset" value="1">
         <button type="submit" class="Boutonsubmit">Réinitialisation du jeu</button>
-        </form>
+    </form>
     {{end}}
-        {{if not .EnCours}}
-        <p><img class="image1" src="../static/P5H.png" alt="Image de Puissance 4"></p>
-           <div class="Formulaire">
-                <form class="joueur" action="/jeu" method="POST">
-                    <label>Joueur 1 : <input class="input" type="text" name="player1"></label><br>
-                    <label>Joueur 2 : <input class="input" type="text" name="player2"></label><br>
-                    <button type="submit" class="Boutonsubmit">Commencer la partie</button>
-                </form>
-            </div>
-        {{end}}
-        {{if .EnCours}}
-            {{if not .GameEnd}}
-            <h2>{{.Player1}} VS {{.Player2}} — Que le meilleur gagne !<br>Tour {{.NbTour}}</h2>
-            <p>Au tour de : {{.JoueurCourant}}</p>
-            {{end}}
-            <!-- Ici tu peux afficher le plateau -->
-            <!-- Tableau affichant la grille jouable (ignorer les murs) -->
-            <div class="container">
-                <table>
-                    <!-- Mot-clé Signification :
+    {{if not .EnCours}}
+
+    <p><img class="image1" src="../static/P5H.png" alt="Image de Puissance 4"></p>
+    <div class="Formulaire">
+        <form class="joueur" action="/jeu" method="POST">
+            <label>Joueur 1 : <input class="input" type="text" name="player1"></label><br>
+            <label>Joueur 2 : <input class="input" type="text" name="player2"></label><br>
+            <button type="submit" class="Boutonsubmit">Commencer la partie</button>
+        </form>
+    </div>
+    {{end}}
+
+    {{if .EnCours}}
+    {{if not .GameEnd}}
+    <h2>{{.Player1}} VS {{.Player2}} — Que le meilleur gagne !<br>Tour {{.NbTour}}</h2>
+    <p>Au tour de : {{.JoueurCourant}}</p>
+    <p class="phrasealeatoire">{{.Encouragement}}</p>
+    {{end}}
+    <!-- Ici tu peux afficher le plateau -->
+    <!-- Tableau affichant la grille jouable (ignorer les murs) -->
+    <div class="container">
+        <table>
+            <!-- Mot-clé Signification :
                             eq	égal à
                             ne	différent de
                             lt	inférieur à
                             le	≤
                             gt	supérieur à
                             ge	≥                -->
-                    {{range $i, $ligne := .Tableau}}
-                    <!--for i, ligne := range data.Tableau-->
-                        {{if and (gt $i 0) (lt $i 7)}} <!-- ignore ligne 0 et 7 (murs) -->
-                        <!--Cela veux dire :
+            {{range $i, $ligne := .Tableau}}
+            <!--for i, ligne := range data.Tableau-->
+            {{if and (gt $i 0) (lt $i 7)}} <!-- ignore ligne 0 et 7 (murs) -->
+            <!--Cela veux dire :
                         if i > 0 && i < 7 {
                         fmt.Println("On est entre 1 et 6")  
                         }-->
-                            <tr>
-                                {{range $j, $cell := $ligne}}
-                                <!--for j, cell := range ligne-->
-                                    {{if and (gt $j 0) (lt $j 8)}} <!-- ignore colonne 0 et 8 (murs) -->
-                                    <!--if j > 0 && j < 8-->
-                                        <td class="
+            <tr>
+                {{range $j, $cell := $ligne}}
+                <!--for j, cell := range ligne-->
+                {{if and (gt $j 0) (lt $j 8)}} <!-- ignore colonne 0 et 8 (murs) -->
+                <!--if j > 0 && j < 8-->
+                <td class="
                                         {{if eq $cell 0}}case-vide{{end}}
                                         {{if eq $cell 1}}pion-rouge{{end}}
                                         {{if eq $cell 2}}pion-jaune{{end}}
                                         {{if eq $cell 3}}pion-rouge-gagnant{{end}}
                                         {{if eq $cell 4}}pion-jaune-gagnant{{end}}">
-                                            {{if and (eq $i 1) (eq $cell 0)}}
-                                                {{if not $.GameEnd}}
-                                                    <form method="post" action="/jeu">
-                                                        <input type="hidden" name="colonne" value="{{$j}}">
-                                                        <button type="submit" class="ligne_uno">⬇</button>
-                                                    </form>
-                                                {{end}}
-                                            {{end}}
-                                            {{if eq $cell 0}}{{end}}
-                                            {{if eq $cell 1}}{{end}}
-                                            {{if eq $cell 2}}{{end}} 
-                                            {{if eq $cell 3}}{{end}} 
-                                            {{if eq $cell 4}}{{end}}
-                                        </td> <!--
+                    {{if and (eq $i 1) (eq $cell 0)}}
+                    {{if not $.GameEnd}}
+                    <form method="post" action="/jeu">
+                        <input type="hidden" name="colonne" value="{{$j}}">
+                        <button type="submit" class="ligne_uno">⬇</button>
+                    </form>
+                    {{end}}
+                    {{end}}
+                    {{if eq $cell 0}}{{end}}
+                    {{if eq $cell 1}}{{end}}
+                    {{if eq $cell 2}}{{end}}
+                    {{if eq $cell 3}}{{end}}
+                    {{if eq $cell 4}}{{end}}
+                </td> <!--
                                             if cell == 0 {
 	            	    		        	    fmt.Fprint(w, ` class="case-vide"`)
     		            	    	        }
@@ -92,14 +96,14 @@
     	            	        		    }
 	    	            	        	    fmt.Fprint(w, ">")
                                             }-->
-                                    {{end}} <!-- } (fermeture d’un bloc)-->
-                                {{end}}
-                            </tr>
-                        {{end}}
-                    {{end}}
-                </table>
-            </div>
-        {{end}}
+                {{end}} <!-- } (fermeture d’un bloc)-->
+                {{end}}
+            </tr>
+            {{end}}
+            {{end}}
+        </table>
+    </div>
+    {{end}}
 </body>
 
 </html>

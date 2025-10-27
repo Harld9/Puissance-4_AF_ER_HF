@@ -3,6 +3,7 @@ package game
 import (
 	"encoding/json"
 	"log"
+	"math/rand"
 	"net/http"
 	"os"
 	"strconv"
@@ -20,15 +21,16 @@ type Position struct {
 }
 
 type GameData struct {
-	J1         string
-	J2         string
-	Tableau    [8][9]int
-	Position   [1]Position
-	Debut      bool
-	NbTour     int
-	TourJoueur int
-	Winnner    string
-	GameEnd    bool
+	J1            string
+	J2            string
+	Tableau       [8][9]int
+	Position      [1]Position
+	Debut         bool
+	NbTour        int
+	TourJoueur    int
+	Winnner       string
+	GameEnd       bool
+	Encouragement string
 }
 
 const Path = "data/stats.json"
@@ -77,7 +79,7 @@ func Tour_joueur(g *GameData, r *http.Request) {
 		log.Println("La partie n'est pas en cours.")
 		return
 	}
-
+	Phrasealeatoire(g)
 	colStr := r.FormValue("colonne")
 	col, err := strconv.Atoi(colStr)
 	if err != nil {
@@ -348,8 +350,10 @@ func WinLeaderboard(nomGagnant string) error {
 
 	//tout est ok
 	return nil
+}
+func Phrasealeatoire(g *GameData) {
 
-	phrases := []string{
+	phrase := []string{
 		"T'as presque gagné… enfin, si on compte à l'envers.",
 		"La logique est là, mais elle est encore en train de charger.",
 		"Si Einstein voyait ça, il refermerait son tableau.",
@@ -462,6 +466,8 @@ func WinLeaderboard(nomGagnant string) error {
 		"Ce n'est pas une défaite, c'est une expérience sociale.",
 		"On ne gagne pas toujours, mais toi, tu marques les esprits.",
 	}
+	r := rand.Intn(100)
+	phrasealeatoire := phrase[r]
+	g.Encouragement = phrasealeatoire
 
-	phrasealeatoire := rand(phrase[i])
 }

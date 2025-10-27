@@ -25,6 +25,7 @@ type PageData struct {
 	JoueurCourant string
 	GameEnd       bool
 	Victoires     []game.JoueurVictoire
+	Encouragement string
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -151,7 +152,9 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 		EnCours:       G.Debut,
 		JoueurCourant: game.Nomdesjoueurs(G),
 		GameEnd:       G.GameEnd,
+		Encouragement: G.Encouragement,
 	}
 	tmpl := template.Must(template.ParseFiles("template/jeu.html"))
 	tmpl.Execute(w, data)
+
 }
