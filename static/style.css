@@ -149,7 +149,6 @@ td {
 /* Texte centré */
 p {
   text-align: center;
-  max-width: 300px;
   padding: 40px 0;
 }
 
@@ -234,25 +233,16 @@ label {
 }
 
 .history {
-  width: 301px;
+  width: 650px;
   height: 500px;
   border: #00ff37 solid 3px;
   border-radius: 10px;
   margin: 100px;
   background-color: #78fe95;
     font-size: 20px;
+    text-align: center;
 }
 
-.turnleaderboard {
-
-  width: 301px;
-  height: 500px;
-  border: #d67010 solid 3px;
-  border-radius: 10px;
-  margin: 100px;
-  background-color: #ffbc7e;
-    font-size: 20px;
-}
 
 .nomjoueurs {
   list-style: none;
@@ -264,5 +254,10 @@ padding: 10px 0px;
 
 .tour{
 padding: 10px 0px;
+
+}
+
+.phistory{
+  text-align: center;
 
 }
