@@ -516,5 +516,4 @@ func Phrasealeatoire(g *GameData) {
 	r := rand.Intn(100)
 	phrasealeatoire := phrase[r]
 	g.Encouragement = phrasealeatoire
-
 }
