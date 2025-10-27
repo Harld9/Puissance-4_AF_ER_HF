@@ -39,11 +39,13 @@ func Home(w http.ResponseWriter, r *http.Request) {
 func Leaderboard(w http.ResponseWriter, r *http.Request) {
 	var joueurs []game.JoueurVictoire
 
+	// on lit le fichier json des stats
 	data, err := os.ReadFile(game.Path)
 	if err != nil {
 		http.Error(w, "Impossible de lire les statistiques", http.StatusInternalServerError)
 		return
 	}
+	// Si fichier on des datas on met les données du json dans la structure joueurs
 	if len(data) > 0 {
 		if err := json.Unmarshal(data, &joueurs); err != nil {
 			http.Error(w, "Impossible de parser les statistiques", http.StatusInternalServerError) //Chat gpt m'a donné ça car on la fonction ne peut pas retourner erreur car pas dans son type de retour
@@ -51,6 +53,7 @@ func Leaderboard(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// On trie les joueurs par nombre de victoires décroissant
 	for i := 0; i < len(joueurs); i++ {
 		for j := i + 1; j < len(joueurs); j++ {
 			if joueurs[j].Victoire > joueurs[i].Victoire {

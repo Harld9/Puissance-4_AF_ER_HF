@@ -310,8 +310,9 @@ func WinLeaderboard(nomGagnant string) error {
 		return err //retourne erreur
 	}
 
-	//si le fichier a des data on essaye de parser en slice de joueur
+	//si le fichier a des data on essaye de récuperer les données et crées un pointeur vers la slice joueurs
 	if len(data) > 0 {
+		//decode les datas json dans la slice joueurs et vérifie erreur
 		if err := json.Unmarshal(data, &joueurs); err != nil { //decode json
 			return err //erreur si invalide
 		}
@@ -322,7 +323,7 @@ func WinLeaderboard(nomGagnant string) error {
 
 	//parcourt tous les joueurs pour voir si nomGagnant est deja present
 	for i := 0; i < len(joueurs); i++ {
-		if strings.EqualFold(joueurs[i].Nom, nomGagnant) { //comparaison insensible a la casse
+		if strings.EqualFold(joueurs[i].Nom, nomGagnant) { //comparaison entre deux string insensible a la casse renvoie true si egal
 			joueurs[i].Victoire++ //increment victoire
 			existe = true         //joueur existe
 			break                 //sort de la boucle
@@ -335,7 +336,8 @@ func WinLeaderboard(nomGagnant string) error {
 	}
 
 	//encode la slice en json avec indentation
-	data, err = json.MarshalIndent(joueurs, "", "  ")
+	data, err = json.MarshalIndent(joueurs, "", "  ") //Mardhal = JSON --> GO
+	//UnMarshalGO --> JSON
 	if err != nil { //si erreur encode
 		return err
 	}
