@@ -5,7 +5,7 @@
   },
   {
     "nom": "Harold Le Goat",
-    "victoire": 9999
+    "victoire": 99
   },
   {
     "nom": "Florian Nul",
@@ -17,6 +17,10 @@
   },
   {
     "nom": "Alain",
+    "victoire": 1
+  },
+  {
+    "nom": "Harold",
     "victoire": 1
   }
 ]

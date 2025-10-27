@@ -219,9 +219,6 @@ label {
 .classement {
   justify-content: space-between;
   display: flex;
-
-
-
 }
 
 .winleaderboard {
@@ -243,6 +240,7 @@ label {
   border-radius: 10px;
   margin: 100px;
   background-color: #78fe95;
+    font-size: 20px;
 }
 
 .turnleaderboard {
@@ -253,6 +251,7 @@ label {
   border-radius: 10px;
   margin: 100px;
   background-color: #ffbc7e;
+    font-size: 20px;
 }
 
 .nomjoueurs {
