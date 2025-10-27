@@ -25,6 +25,7 @@ type PageData struct {
 	JoueurCourant string
 	GameEnd       bool
 	Victoires     []game.JoueurVictoire
+	Historique    []game.GameHistory
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -38,7 +39,6 @@ func Home(w http.ResponseWriter, r *http.Request) {
 
 func Leaderboard(w http.ResponseWriter, r *http.Request) {
 	var joueurs []game.JoueurVictoire
-
 	// on lit le fichier json des stats
 	data, err := os.ReadFile(game.Path)
 	if err != nil {
@@ -62,10 +62,30 @@ func Leaderboard(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	var historique []game.GameHistory
+
+	h, err := os.ReadFile(game.HistoryPath)
+	if err != nil {
+		http.Error(w, "Impossible de lire les historiques", http.StatusInternalServerError)
+		return
+	}
+
+	if len(h) > 0 {
+		if err := json.Unmarshal(h, &historique); err != nil {
+			http.Error(w, "Impossible de parser les historiques", http.StatusInternalServerError)
+			return
+		}
+	}
+
+	for i, j := 0, len(h)-1; i < j; i, j = i+1, j-1 {
+		h[i], h[j] = h[j], h[i]
+	}
+
 	dataPage := PageData{
-		Title:     "Leaderboard",
-		Message:   "Classement des joueurs 🏆",
-		Victoires: joueurs,
+		Title:      "Leaderboard",
+		Message:    "Classement des joueurs 🏆",
+		Victoires:  joueurs,
+		Historique: historique,
 	}
 
 	tmpl := template.Must(template.ParseFiles("template/leaderboard.html"))

@@ -7,11 +7,19 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 type JoueurVictoire struct {
 	Nom      string `json:"nom"`
 	Victoire int    `json:"victoire"`
+}
+
+type GameHistory struct {
+	J1     string `json:"joueur1"`
+	J2     string `json:"joueur2"`
+	Winner string `json:"winner"`
+	Date   string `json:"date"`
 }
 
 type Position struct {
@@ -29,11 +37,15 @@ type GameData struct {
 	TourJoueur int
 	Winnner    string
 	GameEnd    bool
+	Date       string
 }
 
 const Path = "data/stats.json"
+const HistoryPath = "data/history.json"
 
 func InitGame() *GameData {
+	date := time.Now()
+	dateStr := date.Format("2006-01-02 15:04:05")
 	return &GameData{
 		J1: "",
 		J2: "",
@@ -60,6 +72,7 @@ func InitGame() *GameData {
 		TourJoueur: 1, //1 == J1; 2 == J2
 		Winnner:    "",
 		GameEnd:    false,
+		Date:       dateStr,
 	}
 }
 
@@ -111,6 +124,15 @@ func Tour_joueur(g *GameData, r *http.Request) {
 		g.Winnner = "Victoire de " + player + " en " + strconv.Itoa(g.NbTour-1) + " tours !"
 		log.Printf("Le joueur %s gagne", player)
 		g.GameEnd = true
+		h := &GameHistory{
+			J1:     g.J1,
+			J2:     g.J2,
+			Winner: player,
+			Date:   g.Date,
+		}
+		if err := HistoryBoard(h); err != nil {
+			log.Println("Erreur historique:", err)
+		}
 		if err := WinLeaderboard(player); err != nil {
 			log.Println("Erreur leaderboard:", err)
 		}
@@ -348,5 +370,30 @@ func WinLeaderboard(nomGagnant string) error {
 	}
 
 	//tout est ok
+	return nil
+}
+
+func HistoryBoard(h *GameHistory) error {
+	var H []GameHistory
+	data, err := os.ReadFile(HistoryPath)
+	if err != nil {
+		return err
+	}
+
+	if len(data) > 0 {
+		if err := json.Unmarshal(data, &H); err != nil {
+			return err
+		}
+	}
+	H = append(H, GameHistory{J1: h.J1, J2: h.J2, Winner: h.Winner, Date: h.Date})
+	data, err = json.MarshalIndent(H, "", "  ")
+	if err != nil {
+		return err
+	}
+
+	if err := os.WriteFile(HistoryPath, data, 0644); err != nil {
+		return err
+	}
+
 	return nil
 }
