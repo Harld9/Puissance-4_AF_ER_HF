@@ -149,13 +149,13 @@ td {
 /* Texte centré */
 p {
   text-align: center;
-  padding: 40px 0;
+  padding: 10px 0;
 }
 
 h1 {
   text-align: center;
   padding: 10px 0;
-  margin-top: 80px;
+  margin-top: 70px;
 
 }
 
@@ -284,8 +284,7 @@ flex-direction: column;
 }
 
 .Presentation{
-width : 20%
-
+text-align: left;
 
 }
 .text-image-container {
@@ -296,11 +295,48 @@ width : 20%
 }
 
 .text-container {
-    flex: 1; /* Prend tout l'espace disponible */
     padding-right: 20px; /* Espace entre le texte et l'image */
 }
 
 .image-container {
-    flex: 0 0 300px; /* Fixe la largeur de l'image */
     text-align: center; /* Centre l'image */
+    padding: 20px;
+    display: flex;
+    border-top: 100px;
+}
+
+.jouer{
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    text-align: center;
+}
+
+h2{
+  justify-content: left;
+  text-align: left;
+
+}
+
+header {
+  padding: 5px 0; /* réduit l’épaisseur */
+  line-height: 1.2; /* resserre le texte */
 }
