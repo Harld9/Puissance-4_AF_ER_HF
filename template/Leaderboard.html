@@ -23,18 +23,19 @@
                 <li class="nomjoueurs">{{.Nom}} : {{.Victoire}} victoires 🏆</li>
                 {{end}}
             </ul>
-
-
         </div>
-        <div class="history">
-            <p class="phistory">
-                <strong>⭐ Historique de parties ⭐</strong></p>
-            <ul>
-                {{range .Historique}}
-                <li class="nomjoueurs">{{.Date}} - {{.J1}} vs {{.J2}} - Victoire de {{.Winner}} 🏆</li>
-                {{end}}
-            </ul>
-        </div>
+         <div class="history">
+        <p class="phistory">
+            <strong>⭐ Historique de parties ⭐</strong>
+        </p>
+        <ul>
+            {{range .Historique}}
+            <li class="nomjoueurs">{{.Date}} - {{.J1}} vs {{.J2}} - Victoire de {{.Winner}} 🏆</li>
+            {{end}}
+        </ul>
+    </div>
+    </div>
+   
 </body>
 
 </html>

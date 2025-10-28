@@ -145,6 +145,15 @@ func Tour_joueur(g *GameData, r *http.Request) {
 		g.Winnner = "Match nul"
 		log.Println("Match nul")
 		g.GameEnd = true
+		h := &GameHistory{
+			J1:     g.J1,
+			J2:     g.J2,
+			Winner: g.Winnner,
+			Date:   g.Date,
+		}
+		if err := HistoryBoard(h); err != nil {
+			log.Println("Erreur historique:", err)
+		}
 		return
 	}
 

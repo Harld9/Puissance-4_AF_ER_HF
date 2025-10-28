@@ -1,26 +1,44 @@
 [
   {
     "joueur1": "Macron",
-    "joueur2": "Lecornu",
-    "winner": "Macron",
+    "joueur2": "Einstein",
+    "winner": "Einstein",
     "date": "2025-10-27 12:01:42"
   },
   {
-    "joueur1": "Game",
-    "joueur2": "One",
-    "winner": "One",
+    "joueur1": "Obama",
+    "joueur2": "Tesla",
+    "winner": "Obama",
     "date": "2025-10-27 12:09:45"
   },
   {
-    "joueur1": "Macron",
-    "joueur2": "Lecornu",
-    "winner": "Macron",
+    "joueur1": "Trump",
+    "joueur2": "Curie",
+    "winner": "Curie",
     "date": "2025-10-27 12:31:22"
   },
   {
-    "joueur1": "jk",
-    "joueur2": "mm",
-    "winner": "jk",
+    "joueur1": "Biden",
+    "joueur2": "Newton",
+    "winner": "Biden",
     "date": "2025-10-27 19:57:09"
+  },
+  {
+    "joueur1": "Sarkozy",
+    "joueur2": "Hawking",
+    "winner": "Hawking",
+    "date": "2025-10-28 10:53:52"
+  },
+  {
+    "joueur1": "Le Pen",
+    "joueur2": "Darwin",
+    "winner": "Darwin",
+    "date": "2025-10-28 11:41:04"
+  },
+  {
+    "joueur1": "Clinton",
+    "joueur2": "Bohr",
+    "winner": "Clinton",
+    "date": "2025-10-28 11:48:40"
   }
 ]
