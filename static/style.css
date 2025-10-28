@@ -8,9 +8,11 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f6f6f6;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
+
 }
 
 /* Navbar */
@@ -147,8 +149,7 @@ td {
 /* Texte centré */
 p {
   text-align: center;
-  max-width: 300px;
-  padding: 20px 0;
+  padding: 40px 0;
 }
 
 h1 {
@@ -258,5 +259,48 @@ padding: 10px 0px;
 
 .phistory{
   text-align: center;
+  
+}
 
+.formulairecontacts{
+    text-align: center;
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contactform{
+flex-direction: column;
+
+
+}
+
+.puissance4{
+  display:flex;
+  padding-left: 0px;
+  margin: 100px;
+  justify-content: left;
+  width: 300px;
+}
+
+.Presentation{
+width : 20%
+
+
+}
+.text-image-container {
+    display: flex; /* Utilise flexbox pour aligner les éléments */
+    justify-content: space-between; /* Espace entre les éléments */
+    align-items: center; /* Aligne verticalement au centre */
+    margin: 20px; /* Ajoute un peu d'espace autour */
+}
+
+.text-container {
+    flex: 1; /* Prend tout l'espace disponible */
+    padding-right: 20px; /* Espace entre le texte et l'image */
+}
+
+.image-container {
+    flex: 0 0 300px; /* Fixe la largeur de l'image */
+    text-align: center; /* Centre l'image */
 }
