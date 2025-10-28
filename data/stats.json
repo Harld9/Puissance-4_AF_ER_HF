@@ -1,1 +1,66 @@
-[]
+[
+  {
+    "nom": "Elon",
+    "victoire": 1
+  },
+  {
+    "nom": "Zuck",
+    "victoire": 20
+  },
+  {
+    "nom": "Gates",
+    "victoire": 1
+  },
+  {
+    "nom": "Cook",
+    "victoire": 1
+  },
+  {
+    "nom": "Pichai",
+    "victoire": 1
+  },
+  {
+    "nom": "Bezos",
+    "victoire": 2
+  },
+  {
+    "nom": "Musk",
+    "victoire": 1
+  },
+  {
+    "nom": "Dorsey",
+    "victoire": 1
+  },
+  {
+    "nom": "Page",
+    "victoire": 1
+  },
+  {
+    "nom": "Kroc",
+    "victoire": 2
+  },
+  {
+    "nom": "Colette",
+    "victoire": 1
+  },
+  {
+    "nom": "Lolou",
+    "victoire": 1
+  },
+  {
+    "nom": "Benoit ",
+    "victoire": 1
+  },
+  {
+    "nom": "Adem",
+    "victoire": 1
+  },
+  {
+    "nom": "Florian",
+    "victoire": 1
+  },
+  {
+    "nom": "dzd",
+    "victoire": 2
+  }
+]
