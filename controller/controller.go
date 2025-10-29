@@ -123,7 +123,7 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 		if r.FormValue("reset") == "1" {
 			G = game.InitGame()
 			G.Debut = false
-			http.Redirect(w, r, "/jeu", http.StatusSeeOther) // Redirection après POST, un return
+			http.Redirect(w, r, "/jeu", http.StatusSeeOther)
 			return
 		}
 		player1 := r.FormValue("player1")
@@ -134,20 +134,9 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 			G.Debut = true
 		} else {
 			game.Tour_joueur(G, r)
-			if G.Winnner != "" {
-				data := PageData{
-					Title:   "Fin de partie",
-					Message: G.Winnner,
-					Tableau: G.Tableau,
-					EnCours: G.Debut,
-					GameEnd: G.GameEnd,
-				}
-				tmpl := template.Must(template.ParseFiles("template/jeu.html"))
-				tmpl.Execute(w, data)
-			}
+			// Ne pas exécuter de template ici (laisser le GET afficher l’état)
 		}
-		http.Redirect(w, r, "/jeu", http.StatusSeeOther) // Redirection après POST, un return
-
+		http.Redirect(w, r, "/jeu", http.StatusSeeOther)
 		return
 	}
 

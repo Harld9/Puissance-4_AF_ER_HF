@@ -1,20 +1,92 @@
 [
   {
     "joueur1": "Macron",
-    "joueur2": "Lecornu",
-    "winner": "Macron",
+    "joueur2": "Einstein",
+    "winner": "Einstein",
     "date": "2025-10-27 12:01:42"
   },
   {
-    "joueur1": "Game",
-    "joueur2": "One",
-    "winner": "One",
+    "joueur1": "Obama",
+    "joueur2": "Tesla",
+    "winner": "Obama",
     "date": "2025-10-27 12:09:45"
   },
   {
-    "joueur1": "Macron",
-    "joueur2": "Lecornu",
-    "winner": "Macron",
+    "joueur1": "Trump",
+    "joueur2": "Curie",
+    "winner": "Curie",
     "date": "2025-10-27 12:31:22"
+  },
+  {
+    "joueur1": "Biden",
+    "joueur2": "Newton",
+    "winner": "Biden",
+    "date": "2025-10-27 19:57:09"
+  },
+  {
+    "joueur1": "Sarkozy",
+    "joueur2": "Hawking",
+    "winner": "Hawking",
+    "date": "2025-10-28 10:53:52"
+  },
+  {
+    "joueur1": "Le Pen",
+    "joueur2": "Darwin",
+    "winner": "Darwin",
+    "date": "2025-10-28 11:41:04"
+  },
+  {
+    "joueur1": "Clinton",
+    "joueur2": "Bohr",
+    "winner": "Clinton",
+    "date": "2025-10-28 11:48:40"
+  },
+  {
+    "joueur1": "Mamie",
+    "joueur2": "Colette",
+    "winner": "Colette",
+    "date": "2025-10-28 11:56:58"
+  },
+  {
+    "joueur1": "Papi",
+    "joueur2": "Lolou",
+    "winner": "Lolou",
+    "date": "2025-10-28 11:58:19"
+  },
+  {
+    "joueur1": "Benoit ",
+    "joueur2": "Paire",
+    "winner": "Benoit ",
+    "date": "2025-10-28 11:59:02"
+  },
+  {
+    "joueur1": "Paul",
+    "joueur2": "Adem",
+    "winner": "Adem",
+    "date": "2025-10-28 12:00:13"
+  },
+  {
+    "joueur1": "Adem",
+    "joueur2": "Florian",
+    "winner": "Florian",
+    "date": "2025-10-28 12:01:01"
+  },
+  {
+    "joueur1": "Adem",
+    "joueur2": "Emrick",
+    "winner": "Match nul",
+    "date": "2025-10-28 12:01:37"
+  },
+  {
+    "joueur1": "dzd",
+    "joueur2": "dzd",
+    "winner": "dzd",
+    "date": "2025-10-28 12:14:34"
+  },
+  {
+    "joueur1": "zdz",
+    "joueur2": "dzd",
+    "winner": "dzd",
+    "date": "2025-10-28 12:15:08"
   }
 ]

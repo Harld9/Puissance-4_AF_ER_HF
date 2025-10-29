@@ -12,7 +12,7 @@
         <ul class="nav-menu">
             <li><a href="/" class="nav-links">Accueil</a></li>
             <li><a href="/jeu" class="nav-links">Jeu</a></li>
-            <li><a href="/contact" class="nav-links">Contacts</a></li>
+            <li><a href="/contact" class="nav-links">Contact</a></li>
         </ul>
     </nav>
     <div class="classement">
@@ -23,18 +23,19 @@
                 <li class="nomjoueurs">{{.Nom}} : {{.Victoire}} victoires 🏆</li>
                 {{end}}
             </ul>
-
-
         </div>
-        <div class="history">
-            <p class="phistory">
-                <strong>⭐ Historique de parties ⭐</strong></p>
-            <ul>
-                {{range .Historique}}
-                <li class="nomjoueurs">{{.Date}} - {{.J1}} vs {{.J2}} - Victoire de {{.Winner}} 🏆</li>
-                {{end}}
-            </ul>
-        </div>
+         <div class="history">
+        <p class="phistory">
+            <strong>⭐ Historique de parties ⭐</strong>
+        </p>
+        <ul>
+            {{range .Historique}}
+            <li class="nomjoueurs">{{.Date}} - {{.J1}} vs {{.J2}} - Victoire de {{.Winner}} 🏆</li>
+            {{end}}
+        </ul>
+    </div>
+    </div>
+   
 </body>
 
 </html>
