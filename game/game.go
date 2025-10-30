@@ -40,6 +40,7 @@ type GameData struct {
 	GameEnd       bool
 	Encouragement string
 	Date          string
+	Demo          bool
 }
 
 const Path = "data/stats.json"
@@ -57,7 +58,7 @@ func InitGame() *GameData {
 		//  - Emrick:
 		// En gros grille[i][j] = un tableau de tableaux; i = ligne 1 et j = colonne 1
 		Tableau: [8][9]int{
-			{3, 3, 3, 3, 3, 3, 3, 3, 3}, // mur du haut
+			{3, 3, 3, 3, 3, 3, 3, 3, 3},
 			{3, 0, 0, 0, 0, 0, 0, 0, 3},
 			{3, 0, 0, 0, 0, 0, 0, 0, 3},
 			{3, 0, 0, 0, 0, 0, 0, 0, 3},
@@ -75,6 +76,7 @@ func InitGame() *GameData {
 		Winnner:    "",
 		GameEnd:    false,
 		Date:       dateStr,
+		Demo:       false,
 	}
 }
 

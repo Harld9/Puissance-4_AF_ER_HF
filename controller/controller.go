@@ -27,6 +27,7 @@ type PageData struct {
 	Victoires     []game.JoueurVictoire
 	Encouragement string
 	Historique    []game.GameHistory
+	Demo          bool
 }
 
 func Home(w http.ResponseWriter, r *http.Request) {
@@ -126,8 +127,26 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, "/jeu", http.StatusSeeOther)
 			return
 		}
+		if r.FormValue("MatchNul") == "1" {
+			G.Tableau = [8][9]int{
+				{3, 3, 3, 3, 3, 3, 3, 3, 3},
+				{3, 0, 1, 2, 1, 2, 1, 2, 3},
+				{3, 2, 1, 2, 1, 2, 1, 2, 3},
+				{3, 2, 1, 2, 1, 2, 1, 2, 3},
+				{3, 1, 2, 1, 2, 1, 2, 1, 3},
+				{3, 1, 2, 1, 2, 1, 2, 1, 3},
+				{3, 1, 2, 1, 2, 1, 2, 1, 3},
+				{3, 3, 3, 3, 3, 3, 3, 3, 3},
+			}
+			G.NbTour = 42
+			http.Redirect(w, r, "/jeu", http.StatusSeeOther)
+			return
+		}
 		player1 := r.FormValue("player1")
 		player2 := r.FormValue("player2")
+		if player1 == "Demo" || player2 == "Demo" {
+			G.Demo = true
+		}
 		if player1 != "" && player2 != "" {
 			G.J1 = player1
 			G.J2 = player2
@@ -162,6 +181,7 @@ func Jeu(w http.ResponseWriter, r *http.Request) {
 		JoueurCourant: game.Nomdesjoueurs(G),
 		GameEnd:       G.GameEnd,
 		Encouragement: G.Encouragement,
+		Demo:          G.Demo,
 	}
 	tmpl := template.Must(template.ParseFiles("template/jeu.html"))
 	tmpl.Execute(w, data)

@@ -13,6 +13,12 @@
             <li><a href="/" class="nav-links">Accueil</a></li>
             <li><a href="/leaderboard" class="nav-links">Leaderboard</a></li>
             <li><a href="/contact" class="nav-links">Contact</a></li>
+            {{if .Demo}}
+            <form action="/jeu" method="post" class="nav-menu">
+                <input type="hidden" name="MatchNul" value="1">
+                <button type="submit">Match Nul</button>
+            </form>
+            {{end}}
         </ul>
     </nav>
     <h1>{{ .Title }}</h1>
